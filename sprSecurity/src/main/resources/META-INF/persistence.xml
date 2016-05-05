@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+	xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+	<persistence-unit name="sprTest" transaction-type="JTA">
+		<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+		<jta-data-source>TEMP_DATA_SOURCE</jta-data-source>
+		<exclude-unlisted-classes>false</exclude-unlisted-classes>
+		<properties>
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect" />
+			<property name="hibernate.show_sql" value="true" />
+			<property name="hibernate.transaction.jta.platform"	value="org.hibernate.engine.transaction.jta.platform.internal.WeblogicJtaPlatform" />
+			<property name="hibernate.transaction.manager_lookup_class"	value="org.hibernate.transaction.WebSphereExtendedJTATransactionLookup" />
+			<property name="hibernate.search.default.directory_provider" value="filesystem" />
+			<property name="hibernate.search.default.indexBase" value="D:/eclps/workspace/temps-ejb/search" />
+			<property name="hibernate.search.lucene_version" value="LUCENE_35" />
+
+
+			<property name="org.hibernate.envers.audit_table_suffix" value="_AUD" />
+			<property name="org.hibernate.envers.revision_field_name" value="REV" />
+			<property name="org.hibernate.envers.revision_type_field_name"	value="REVTYPE" />
+			<property name="org.hibernate.envers.audit_strategy"
+				value="org.hibernate.envers.strategy.DefaultAuditStrategy" />
+			<property name="org.hibernate.envers.track_entities_changed_in_revision" value="true" />
+			<!-- <property name="hibernate.hbm2ddl.auto" value="create" /> -->
+			<property name="connection.autoReconnect" value="true" />
+			<property name="connection.autoReconnectForPools" value="true" />
+			<property name="hibernate.is-connection-validation-required" value="true" />
+
+			<property name="hibernate.listeners.envers.autoRegister" value="false" />
+
+		</properties>
+	</persistence-unit>
+</persistence>
