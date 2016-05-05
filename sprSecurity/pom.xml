@@ -14,6 +14,8 @@
 		<Spring.version>4.2.5.RELEASE</Spring.version>
 		<aspectj.version>1.8.9</aspectj.version><!-- 1.7.4 , 1.6.11 ,1.8.9 -->
 		<spring.data>1.10.1.RELEASE</spring.data>
+		<oval.latest>1.85</oval.latest>
+
 	</properties>
 
 	<dependencies>
@@ -89,15 +91,20 @@
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search-analyzers</artifactId>
 			<version>${hibernate.search}</version>
-
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-search</artifactId>
 			<version>${hibernate.search}</version>
-
 		</dependency>
 
+		<!-- Oval -->
+
+		<dependency>
+			<groupId>net.sf.oval</groupId>
+			<artifactId>oval</artifactId>
+			<version>${oval.latest}</version>
+		</dependency>
 
 
 	</dependencies>

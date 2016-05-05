@@ -1,1 +1,1 @@
-com.sprapp.audit.envers.EnverseCustomIntegrator
+com.sprSecurity.spring.hibernate.audit.EnverseCustomIntegrator
