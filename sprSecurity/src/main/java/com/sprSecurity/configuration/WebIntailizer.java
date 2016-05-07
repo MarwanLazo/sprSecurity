@@ -9,17 +9,18 @@ import org.springframework.web.context.support.AnnotationConfigWebApplicationCon
 import org.springframework.web.servlet.DispatcherServlet;
 
 public class WebIntailizer implements WebApplicationInitializer {
-
-	public void onStartup(ServletContext container) throws ServletException {
-
+	
+	public void onStartup (ServletContext container) throws ServletException {
+		
 		AnnotationConfigWebApplicationContext ctx = new AnnotationConfigWebApplicationContext();
 		ctx.register(MainConfiguration.class);
 		ctx.setServletContext(container);
 		ServletRegistration.Dynamic servlet = container.addServlet("dispatcher", new DispatcherServlet(ctx));
 		servlet.setLoadOnStartup(1);
-		servlet.addMapping("/");
+		servlet.addMapping("/spr/*.html");
+		servlet.addMapping("/spr/*");
 	}
-
+	
 }
 
 /*
