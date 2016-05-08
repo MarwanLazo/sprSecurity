@@ -9,6 +9,8 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.ViewScoped;
 import javax.faces.event.ActionEvent;
 
+import org.apache.log4j.Logger;
+
 import com.sprSecurity.spring.data.service.TempTableService;
 import com.sprSecurity.spring.dto.TempTableDTO;
 import com.sprSecurity.spring.enums.Status;
@@ -21,6 +23,7 @@ import com.sprSecurity.spring.enums.Status;
 @ViewScoped
 public class TempController implements Serializable {
 	private static final long	   serialVersionUID	= 1L;
+	private Logger				logger	= Logger.getLogger(TempController.class);
 	
 	private List<TempTableDTO> results;
 	private TempTableDTO		   temp;
@@ -29,6 +32,7 @@ public class TempController implements Serializable {
 	
 	@PostConstruct
 	private void init () {
+		logger.info("Load All Temp tables");
 		results = tempTableService.findAll();
 		temp = new TempTableDTO();
 		// for (TempTableDTO tempTableDTO : results) {

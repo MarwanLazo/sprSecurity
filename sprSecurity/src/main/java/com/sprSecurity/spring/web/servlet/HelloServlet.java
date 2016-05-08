@@ -3,6 +3,7 @@ package com.sprSecurity.spring.web.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.jsf.FacesContextUtils;
 
 import com.sprSecurity.spring.data.service.TempTableService;
 import com.sprSecurity.spring.dto.TempTableDTO;
@@ -41,8 +44,10 @@ public class HelloServlet extends HttpServlet {
 		try {
 			TempTableDTO dto = new TempTableDTO();
 			dto.setStatus(Status.ACTIVE);
-			dto.setId("Adam");
-			dto.setTempEmail("adam@gmail.com");
+			dto.setId("Ali");
+			dto.setTempEmail("ali@gmail.com");
+			ApplicationContext ctx = FacesContextUtils.getWebApplicationContext(FacesContext.getCurrentInstance());
+			service = ctx.getBean(TempTableService.class);
 			service.createEntity(dto);
 			out.println("");
 		} finally {
