@@ -112,11 +112,11 @@
 			<artifactId>dozer</artifactId>
 			<version>${dozar.version}</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>net.sf.dozer</groupId>
 			<artifactId>dozer-spring</artifactId>
 			<version>${dozar.version}</version>
-		</dependency>
+		</dependency> -->
 
 		<!-- log4j -->
 		<dependency>

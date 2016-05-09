@@ -45,7 +45,7 @@ public class TempController implements Serializable {
 	}
 	
 	public void createTempTable (ActionEvent event) {
-		temp.setId(temp.getId().replace(" ", ""));
+		temp.setTempTableName(temp.getTempTableName().replace(" ", ""));
 		if (temp.getStatus() == null || temp.getStatus().equals(Status.ACTIVE)) {
 			temp.setStatus(Status.IN_ACTIVE);
 		} else {

@@ -18,7 +18,7 @@ public class TempTableDTO extends AbstractDTO<String> {
 	@NotNull(message = "Name cannot be null")
 	@UpperCase
 	@ValidID
-	private String				id;
+	private String				tempTableName;
 	
 	@NotNull
 	@MatchPattern(pattern = EMAIL_PATTERN, message = "invalid email Oval")
@@ -32,7 +32,7 @@ public class TempTableDTO extends AbstractDTO<String> {
 	
 	public TempTableDTO(String tempName, String tempEmail) {
 		super();
-		this.id = tempName;
+		this.tempTableName = tempName;
 		this.tempEmail = tempEmail;
 	}
 	
@@ -55,7 +55,7 @@ public class TempTableDTO extends AbstractDTO<String> {
 	
 	@Override
 	public String toString () {
-		return "[" + id + ":" + tempEmail + "]";
+		return "[" + tempTableName + ":" + tempEmail + "]";
 	}
 	
 	@Override
@@ -63,19 +63,19 @@ public class TempTableDTO extends AbstractDTO<String> {
 		if (obj == null) return false;
 		if (obj instanceof TempTableDTO) {
 			TempTableDTO temp = (TempTableDTO) obj;
-			if (temp.id != null && temp.tempEmail != null && temp.tempEmail.equals(this.tempEmail) && temp.id.equals(this.id)) return true;
+			if (temp.tempTableName != null && temp.tempEmail != null && temp.tempEmail.equals(this.tempEmail) && temp.tempTableName.equals(this.tempTableName)) return true;
 		}
 		return false;
 	}
 	
 	@Override
 	public String getPK () {
-		return id;
+		return getTempTableName();
 	}
 	
 	@Override
 	public String getPKAsString () {
-		return id.toString();
+		return getTempTableName().toString();
 	}
 	
 	@Override
@@ -83,12 +83,12 @@ public class TempTableDTO extends AbstractDTO<String> {
 		return TempTableEB.class;
 	}
 
-	public String getId () {
-		return id;
+	public String getTempTableName() {
+		return tempTableName;
 	}
 
-	public void setId (String id) {
-		this.id = id;
+	public void setTempTableName(String tempTableName) {
+		this.tempTableName = tempTableName;
 	}
 	
 }

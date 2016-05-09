@@ -54,12 +54,12 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 	@Override
 	public DTO findEntityById(PK pk) {
 		logger.info("Find  Entity if exist");
-		if (pk != null && pk.getClass().isAssignableFrom(Serializable.class)) {
+		if (pk != null) {
 			Entity eb = getRepository().findOne(pk);
 			logger.info("Entity founded");
 			return getTransFormer().transfromToDTO(eb);
 		} else {
-			logger.info("No Entity founded with Id" + pk.toString());
+			logger.info("No Entity founded with Id >> " + pk);
 			return null;
 		}
 

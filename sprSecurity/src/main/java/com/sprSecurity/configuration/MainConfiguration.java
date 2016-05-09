@@ -1,11 +1,8 @@
 package com.sprSecurity.configuration;
 
-import org.dozer.spring.DozerBeanMapperFactoryBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.ImportResource;
-import org.springframework.core.io.Resource;
-import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.web.servlet.ViewResolver;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
@@ -20,31 +17,23 @@ import com.sprSecurity.spring.logging.SpringInterceptor;
 // @EnableAspectJAutoProxy()
 @ImportResource(locations = { "/WEB-INF/sprCongfig/sprConfig.xml" })
 public class MainConfiguration extends WebMvcConfigurerAdapter {
+
 	@Bean
-	public ViewResolver viewResolver () {
+	public ViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
 		viewResolver.setPrefix("/WEB-INF/views/");
 		viewResolver.setSuffix(".jsp");
-		
+
 		return viewResolver;
 	}
-	
+
 	// add Interceptors
 	@Override
-	public void addInterceptors (InterceptorRegistry registry) {
+	public void addInterceptors(InterceptorRegistry registry) {
 		registry.addInterceptor(new SpringInterceptor()).addPathPatterns("/**");
 	}
-	
-	@Bean(name = "dozerBean")
-	public DozerBeanMapperFactoryBean configDozer () throws Exception {
-		DozerBeanMapperFactoryBean mapper = new DozerBeanMapperFactoryBean();
-		Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath*:dozer/*");
-		mapper.setMappingFiles(resources);
-		return mapper;
-	}
-	
-	
+
 	// Data source
 	// @Bean
 	// public DataSource getDataSource() throws NamingException {
@@ -112,5 +101,5 @@ public class MainConfiguration extends WebMvcConfigurerAdapter {
 	// public JtaTransactionManager getJtaTransactionManager() {
 	// return new JtaTransactionManager();
 	// }
-	
+
 }

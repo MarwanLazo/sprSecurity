@@ -28,7 +28,7 @@ public class HelloWorldController {
 		
 		TempTableDTO dto = new TempTableDTO();
 		dto.setStatus(Status.ACTIVE);
-		dto.setId("Adam");
+		dto.setTempTableName("Adam");
 		dto.setTempEmail("adam@gmail.com");
 		service.createEntity(dto);
 		model.addAttribute("greeting", "Hello World Again, from Spring 4 MVC");

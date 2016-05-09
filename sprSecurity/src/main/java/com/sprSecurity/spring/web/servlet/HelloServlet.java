@@ -51,13 +51,23 @@ public class HelloServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 			TempTableDTO dto = new TempTableDTO();
-			dto.setStatus(Status.ACTIVE);
-			dto.setId("Adam");
+			dto.setStatus(Status.IN_ACTIVE);
+			dto.setTempTableName("Adam");
 			dto.setTempEmail("adam@gmail.com");
 			logger.info("sevlet method 'Sarvice' create or update  temp table");
 			dto = service.createEntity(dto);
 			logger.info("creation Done !! successfully	");
 			out.println(dto);
+
+			// dto.setStatus(Status.ACTIVE);
+			// dto.setId("Ali");
+			// dto.setTempEmail("ali@gmail.com");
+			// logger.info("sevlet method 'Sarvice' create or update temp
+			// table");
+			// dto = service.createEntity(dto);
+			// logger.info("creation Done !! successfully ");
+			// out.println(dto);
+			out.println(service.findAll());
 		} finally {
 			out.close();
 		}
