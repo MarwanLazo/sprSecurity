@@ -1,13 +1,13 @@
 package com.sprSecurity.spring.dozer;
 
 import org.apache.log4j.Logger;
-import org.dozer.CustomConverter;
+import org.dozer.ConfigurableCustomConverter;
 
 import com.sprSecurity.spring.data.dao.AbstractDAO;
 import com.sprSecurity.spring.dto.AbstractDTO;
 
 @SuppressWarnings("rawtypes")
-public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractDTO> implements CustomConverter {
+public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractDTO> implements ConfigurableCustomConverter {
 
 	private Logger	logger	= Logger.getLogger(DozerCustomConverter.class);
 
@@ -32,6 +32,11 @@ public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractD
 			logger.info(dto.getClass().getName() + "==>>" + dto);
 
 		return dto;
+	}
+
+	@Override
+	public void setParameter(String parameter) {
+
 	}
 
 }
