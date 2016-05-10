@@ -22,7 +22,6 @@ public class TempTableDTO extends AbstractDTO<String> {
 	
 	@NotNull
 	@MatchPattern(pattern = EMAIL_PATTERN, message = "invalid email Oval")
-	// @Pattern(regexp = EMAIL_PATTERN, message = "invalid email JavaX")
 	private String				tempEmail;
 	
 	private TempTableDTO		tempRef;

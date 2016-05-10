@@ -17,9 +17,7 @@ import com.sprSecurity.spring.data.service.TempTableService;
 import com.sprSecurity.spring.dto.TempTableDTO;
 import com.sprSecurity.spring.enums.Status;
 
-/**
- * Servlet implementation class HelloServlet
- */
+
 @WebServlet("/HelloServlet")
 public class HelloServlet extends HttpServlet {
 	private static final long	serialVersionUID	= 1L;
@@ -28,9 +26,7 @@ public class HelloServlet extends HttpServlet {
 
 	private Logger				logger				= Logger.getLogger(HelloServlet.class);
 
-	/**
-	 * @see HttpServlet#HttpServlet()
-	 */
+
 	public HelloServlet() {
 		super();
 	}
@@ -43,33 +39,22 @@ public class HelloServlet extends HttpServlet {
 		logger.info("intgerate Done !! Successfully");
 	}
 
-	/**
-	 * @see HttpServlet#service(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
+
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		try {
 			TempTableDTO dto = new TempTableDTO();
+			dto.setTempTableName(request.getParameter("name"));
+			dto.setTempEmail(request.getParameter("email"));
 			dto.setStatus(Status.IN_ACTIVE);
-			dto.setTempTableName("Adam");
-			dto.setTempEmail("adam@gmail.com");
+			dto.setTempRef(service.findEntityById("Adam"));
 			logger.info("sevlet method 'Sarvice' create or update  temp table");
 			dto = service.createEntity(dto);
 			logger.info("creation Done !! successfully	");
 			out.println(dto);
-
-			// dto.setStatus(Status.ACTIVE);
-			// dto.setId("Ali");
-			// dto.setTempEmail("ali@gmail.com");
-			// logger.info("sevlet method 'Sarvice' create or update temp
-			// table");
-			// dto = service.createEntity(dto);
-			// logger.info("creation Done !! successfully ");
-			// out.println(dto);
 			out.println(service.findAll());
 		} finally {
-			out.close();
+ 			out.close();
 		}
 	}
 

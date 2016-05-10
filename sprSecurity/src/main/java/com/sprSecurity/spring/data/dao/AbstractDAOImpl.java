@@ -13,6 +13,11 @@ import com.sprSecurity.spring.dozer.AbstractTransformer;
 import com.sprSecurity.spring.dto.AbstractDTO;
 import com.sprSecurity.spring.hibernate.entity.AbstractEntity;
 
+import net.sf.oval.ConstraintViolation;
+import net.sf.oval.Validator;
+import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
+import net.sf.oval.configuration.annotation.BeanValidationAnnotationsConfigurer;
+
 public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends AbstractDTO<PK>, Entity extends AbstractEntity<PK>, Repository extends MainRepository<Entity, PK>, TransFormer extends AbstractTransformer<DTO, Entity>>
 		implements AbstractDAO<PK, DTO> {
 
@@ -27,20 +32,45 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 
 	@Override
 	public DTO createEntity(DTO dto) {
+		if (!validate(dto))
+			return null;
 		logger.info("Create Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
 		eb = getRepository().save(eb);
 		return getTransFormer().transfromToDTO(eb);
 	}
 
+	private boolean validate(DTO dto) {
+		// TODO
+		AnnotationsConfigurer annotationsConfigurer;
+		BeanValidationAnnotationsConfigurer beanValidationAnnotationsConfigurer;
+		Validator validator;
+		annotationsConfigurer = new AnnotationsConfigurer();
+		beanValidationAnnotationsConfigurer = new BeanValidationAnnotationsConfigurer();
+		validator = new Validator(annotationsConfigurer, beanValidationAnnotationsConfigurer);
+
+		List<ConstraintViolation> errors = validator.validate(dto);
+		if (!errors.isEmpty()) {
+			for (ConstraintViolation constraintViolation : errors) {
+				logger.error(constraintViolation.getMessage());
+			}
+			return false;
+		}
+		return true;
+	}
+
 	@Override
 	public DTO updateEntity(DTO dto) {
+		if (!validate(dto))
+			return null;
 		logger.info("Update Entity Start");
 		return createEntity(dto);
 	}
 
 	@Override
 	public boolean deleteEntity(DTO dto) {
+		if (!validate(dto))
+			return false;
 		logger.info("delete Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
 		if (findEntityById(eb) != null) {
@@ -77,6 +107,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 	}
 
 	private Entity findEntityById(Entity entity) {
+
 		logger.info("Find  Entity if exist");
 		if (entity.getPK() != null && entity.getPK().getClass().isAssignableFrom(Serializable.class)) {
 			return getRepository().findOne(entity.getPK());

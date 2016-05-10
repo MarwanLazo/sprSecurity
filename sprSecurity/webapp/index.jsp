@@ -1,15 +1,26 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<fmt:setBundle basename="resources.application" /> 
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <html>
 <head>
-  <title><fmt:message key="welcome.title"/></title>
+<title>Hello ! Srv</title>
 </head>
-<body bgcolor="white">
+<body style="color: white; background-color: black;">
 
-<h3><fmt:message key="welcome.heading"/></h3>
-<p><fmt:message key="welcome.message"/></p>
-<a href="hello">click</a>
+	<%-- <form action="delete.html" method="get">
+		<c:forEach var="item" items="${message}">
+			<c:out value="${item.tempName}  --# DBA #--  ${item.tempEmail}" />
+			<button name="item" value="${item.tempName}">delete</button>
+			<p>
+		</c:forEach>
+	</form>
+ --%>
+	<form action="HelloServlet" method="get" style="padding: 100px;">
+		name:<input type="text" name="name" /> <br /> email:<input
+			type="text" name="email" /><br />
+		<button value="submit" type="submit" style="padding-right: 10;">submit</button>
+	</form>
+
 </body>
 </html>
