@@ -16,16 +16,17 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sprSecurity.spring.data.service.TempTableService;
 import com.sprSecurity.spring.dto.TempTableDTO;
 import com.sprSecurity.spring.enums.Status;
-
+import com.sprSecurity.spring.jasper.dynamic.EmployeeReport;
 
 @WebServlet("/HelloServlet")
 public class HelloServlet extends HttpServlet {
 	private static final long	serialVersionUID	= 1L;
 	@Inject
 	private TempTableService	service;
+	@Inject
+	private EmployeeReport		report;
 
 	private Logger				logger				= Logger.getLogger(HelloServlet.class);
-
 
 	public HelloServlet() {
 		super();
@@ -39,7 +40,6 @@ public class HelloServlet extends HttpServlet {
 		logger.info("intgerate Done !! Successfully");
 	}
 
-
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		try {
@@ -52,9 +52,10 @@ public class HelloServlet extends HttpServlet {
 			dto = service.createEntity(dto);
 			logger.info("creation Done !! successfully	");
 			out.println(dto);
+			report.gernerateReport(null);
 			out.println(service.findAll());
 		} finally {
- 			out.close();
+			out.close();
 		}
 	}
 

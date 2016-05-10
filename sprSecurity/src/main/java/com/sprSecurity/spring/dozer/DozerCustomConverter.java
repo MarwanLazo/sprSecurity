@@ -53,7 +53,7 @@ public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractD
 			}
 
 		} else if (AbstractEntity.class.isAssignableFrom(targetClazz)) {
-			// TODO not Implemented now as I am not need It <<== NOW ==>>
+			// TODO comment ! not Implemented now as I am not need It <<== NOW ==>>
 			if (AbstractDTO.class.isAssignableFrom(sourceClazz)) {
 				// source field value is DTO
 				AbstractDTO dto = (AbstractDTO) sourceFieldValue;
@@ -65,13 +65,20 @@ public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractD
 					object = dto.getPK();
 				}
 				// -- find Entity Bean By CompositePKEB object and Return
-				// TODO -- for now let us return null as it need to create DAO
+				// TODO comment ! -- for now let us return null as it need to create DAO
 				// to get Entity Bean and return or get DTO with out
 				// --step "1"-- and re-transform to Entity Bean
 			}
 
 		} else {
-			return ((AbstractDTO) sourceFieldValue).getPK();
+			if (CompositePKEB.class.getClass().isAssignableFrom(((AbstractDTO) sourceFieldValue).getPK().getClass())) {
+				// TODO  comment !  not implemented yet
+			} else if (CompositePKDTO.class.getClass().isAssignableFrom(((AbstractDTO) sourceFieldValue).getPK().getClass())) {
+				// TODO comment !  not implemented yet
+			} else {
+				return ((AbstractDTO) sourceFieldValue).getPK();
+			}
+
 		}
 
 		return null;
