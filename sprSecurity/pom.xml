@@ -61,6 +61,13 @@
 			<version>${Spring.version}</version>
 		</dependency>
 
+		<!-- Spring JMS -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-jms</artifactId>
+			<version>${Spring.version}</version>
+		</dependency>
+
 
 		<!-- Spring Data -->
 		<dependency>

@@ -1,5 +1,7 @@
 package com.sprSecurity.spring.dto;
 
+import java.util.Date;
+
 import javax.validation.constraints.NotNull;
 
 import com.sprSecurity.spring.hibernate.entity.TempTableEB;
@@ -25,6 +27,8 @@ public class TempTableDTO extends AbstractDTO<String> {
 	private String				tempEmail;
 	
 	private TempTableDTO		tempRef;
+	
+	private Date				createTime;
 	
 	public TempTableDTO() {
 	}
@@ -88,6 +92,14 @@ public class TempTableDTO extends AbstractDTO<String> {
 
 	public void setTempTableName(String tempTableName) {
 		this.tempTableName = tempTableName;
+	}
+
+	public Date getCreateTime() {
+		return createTime;
+	}
+
+	public void setCreateTime(Date createTime) {
+		this.createTime = createTime;
 	}
 	
 }

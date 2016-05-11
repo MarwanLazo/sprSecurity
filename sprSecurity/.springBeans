@@ -7,9 +7,9 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-		<config>webapp/WEB-INF/sprCongfig/sprConfig.xml</config>
 	</configs>
 	<autoconfigs>
+		<config>webapp/WEB-INF/applicationContext.xml</config>
 	</autoconfigs>
 	<configSets>
 	</configSets>
