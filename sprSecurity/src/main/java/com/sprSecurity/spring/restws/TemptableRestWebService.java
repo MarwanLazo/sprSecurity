@@ -43,7 +43,7 @@ public class TemptableRestWebService {
 	}
 
 	@RequestMapping(value = "/temptable/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<TempTableDTO> getUser(@PathVariable("id") String id) {
+	public ResponseEntity<TempTableDTO> getTempTable(@PathVariable("id") String id) {
 		System.out.println("Fetching Temp Table with id " + id);
 		TempTableDTO dto = temp.findEntityById(id);
 		if (dto == null) {
