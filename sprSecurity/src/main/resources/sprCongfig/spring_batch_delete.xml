@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:c="http://www.springframework.org/schema/c" xmlns:cache="http://www.springframework.org/schema/cache"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:jms="http://www.springframework.org/schema/jms" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:lang="http://www.springframework.org/schema/lang" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:repository="http://www.springframework.org/schema/data/repository"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:batch="http://www.springframework.org/schema/batch"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-4.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-4.2.xsd
+		http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms-4.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.8.xsd
+		http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/data/repository http://www.springframework.org/schema/data/repository/spring-repository-1.11.xsd
+		http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-4.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd
+		http://www.springframework.org/schema/batch http://www.springframework.org/schema/batch/spring-batch-3.0.xsd
+		">
+
+
+	<import resource="classpath:context-model.xml" />
+
+
+	<!-- JobRepository and JobLauncher are configuration/setup classes -->
+	<bean id="jobRepository"
+		class="org.springframework.batch.core.repository.support.MapJobRepositoryFactoryBean" />
+
+	<bean id="jobLauncher"
+		class="org.springframework.batch.core.launch.support.SimpleJobLauncher">
+		<property name="jobRepository" ref="jobRepository" />
+	</bean>
+
+
+	<bean id="multiResourceItemReader"
+		class="org.springframework.batch.item.file.MultiResourceItemReader">
+		<property name="resources" value="classpath:csv/ExamResult*.txt" />
+		<property name="delegate" ref="flatFileItemReader" />
+	</bean>
+
+	<!-- ItemReader reads a complete line one by one from input file -->
+	<bean id="flatFileItemReader" class="org.springframework.batch.item.file.FlatFileItemReader"
+		scope="step">
+
+		<property name="lineMapper">
+
+			<bean class="org.springframework.batch.item.file.mapping.DefaultLineMapper">
+
+				<property name="fieldSetMapper">
+					<!-- Mapper which maps each individual items in a record to properties 
+						in POJO -->
+					<bean class="com.sprSecurity.spring.batch.ExamResultFieldSetMapper" />
+				</property>
+
+				<property name="lineTokenizer">
+					<!-- A tokenizer class to be used when items in input record are separated 
+						by specific characters -->
+					<bean
+						class="org.springframework.batch.item.file.transform.DelimitedLineTokenizer">
+						<property name="delimiter" value="|" />
+					</bean>
+				</property>
+
+			</bean>
+
+		</property>
+
+	</bean>
+
+
+	<!-- ItemWriter which writes data to database -->
+	<bean id="databaseItemWriter"
+		class="org.springframework.batch.item.database.HibernateItemWriter">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<!-- Optional ItemProcessor to perform business logic/filtering on the input 
+		records -->
+	<bean id="itemProcessor" class="com.sprSecurity.spring.batch.ExamResultItemProcessor" />
+
+	<!-- Optional JobExecutionListener to perform business logic before and 
+		after the job -->
+	<bean id="jobListener" class="com.sprSecurity.spring.batch.ExamResultJobListener" />
+
+
+	<!-- Actual Job -->
+	<batch:job id="examResultJob">
+		<batch:step id="step1">
+			<batch:tasklet transaction-manager="transactionManager">
+				<batch:chunk reader="multiResourceItemReader" writer="databaseItemWriter"
+					processor="itemProcessor" commit-interval="10" />
+			</batch:tasklet>
+		</batch:step>
+		<batch:listeners>
+			<batch:listener ref="jobListener" />
+		</batch:listeners>
+	</batch:job>
+
+</beans>

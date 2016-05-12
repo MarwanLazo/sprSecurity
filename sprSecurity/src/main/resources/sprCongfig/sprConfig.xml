@@ -24,9 +24,8 @@
 		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.2.xsd">
 
 
-	<!-- <context:property-placeholder
-		location="classpath:porperties/data_base.properties,classpath:porperties/system_props.properties" />
- -->
+	<!-- <context:property-placeholder location="classpath:porperties/data_base.properties,classpath:porperties/system_props.properties" 
+		/> -->
 	<mvc:annotation-driven />
 	<context:annotation-config />
 	<aop:aspectj-autoproxy />
@@ -47,5 +46,7 @@
 	<import resource="spring_jms.xml" />
 
 	<import resource="spring_WS.xml" />
+
+	<import resource="classpath:batch/spring_batch.xml" />
 
 </beans>
