@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -48,6 +49,10 @@ public class TempTableEB extends AbstractEntity<String> {
 
 	@Column(name = "create_time")
 	private Date				createTime;
+
+	@Version
+	@Column(name = "entity_version")
+	private Integer				version;
 
 	public TempTableEB() {
 		super();
@@ -116,6 +121,14 @@ public class TempTableEB extends AbstractEntity<String> {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 }

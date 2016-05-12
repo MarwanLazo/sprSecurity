@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 
 import org.hibernate.search.jpa.FullTextEntityManager;
 import org.hibernate.search.jpa.Search;
@@ -19,7 +18,7 @@ import com.sprSecurity.spring.hibernate.entity.TempTableEB;
 
 public class TempTableSearchImpl implements TempTableSearch {
 
-	@PersistenceContext(unitName = "sprTest")
+//	@PersistenceContext(unitName = "sprTest")
 	private EntityManager					entitymanager;
 
 	@Inject

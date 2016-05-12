@@ -3,11 +3,13 @@ package com.sprSecurity.spring.data.dao;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.ejb.EJB;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
 
+import com.sprSecurity.ejb.TempTableEJB;
 import com.sprSecurity.spring.data.MainRepository;
 import com.sprSecurity.spring.dozer.AbstractTransformer;
 import com.sprSecurity.spring.dto.AbstractDTO;
@@ -22,6 +24,9 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		implements AbstractDAO<PK, DTO> {
 
 	private Logger					logger	= Logger.getLogger(AbstractDAOImpl.class);
+	// java:global._auto_generated_ear_.sprSecurity.TempTableEJBImpl
+	@EJB(mappedName = "TempTableEJB#com.sprSecurity.ejb.TempTableEJB")
+	private TempTableEJB			tableEJB;
 
 	@PersistenceContext
 	private transient EntityManager	em;
@@ -83,6 +88,8 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 
 	@Override
 	public DTO findEntityById(PK pk) {
+		logger.info("======================>> " + tableEJB);
+		tableEJB.get();
 		logger.info("Find  Entity if exist");
 		if (pk != null) {
 			Entity eb = getRepository().findOne(pk);
