@@ -27,8 +27,8 @@
 		">
 
 
-	<import resource="spring_context_model.xml" />
 
+	<bean class="com.sprSecurity.spring.batch.ExamResultBean" id="examResultBean" />
 
 	<!-- JobRepository and JobLauncher are configuration/setup classes -->
 	<bean id="jobRepository"
