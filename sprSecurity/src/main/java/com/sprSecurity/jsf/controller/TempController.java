@@ -24,7 +24,7 @@ import com.sprSecurity.spring.enums.Status;
 public class TempController implements Serializable {
 	private static final long	   serialVersionUID	= 1L;
 	private Logger				logger	= Logger.getLogger(TempController.class);
-	
+//	/kh;skfhS;DJF'sdf
 	private List<TempTableDTO> results;
 	private TempTableDTO		   temp;
 	@ManagedProperty("#{tempTableService}")
