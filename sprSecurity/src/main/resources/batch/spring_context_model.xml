@@ -30,7 +30,7 @@
 
 
 	<bean class="com.sprSecurity.spring.batch.ExamResultBean" id="examResultBean" />
-	<bean id="sessionFactory"
+	<!-- <bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 		<property name="packagesToScan">
@@ -45,5 +45,5 @@
 				<prop key="hibernate.format_sql">true</prop>
 			</props>
 		</property>
-	</bean>
+	</bean> -->
 </beans>

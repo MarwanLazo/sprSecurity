@@ -78,8 +78,8 @@
 
 	<!-- ItemWriter which writes data to database -->
 	<bean id="databaseItemWriter"
-		class="org.springframework.batch.item.database.HibernateItemWriter">
-		<property name="sessionFactory" ref="sessionFactory" />
+		class="org.springframework.batch.item.database.JpaItemWriter">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
 
