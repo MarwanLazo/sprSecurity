@@ -15,7 +15,7 @@ import com.sprSecurity.spring.logging.SpringInterceptor;
 // @EnableWebMvc
 // @ComponentScan(basePackages = { "com.sprSecurity.spring.controller" })
 // @EnableAspectJAutoProxy()
-@ImportResource(locations = { "/WEB-INF/sprCongfig/sprConfig.xml" })
+@ImportResource(locations = { "classpath*:sprCongfig/sprConfig.xml" })
 public class MainConfiguration extends WebMvcConfigurerAdapter {
 
 	@Bean
