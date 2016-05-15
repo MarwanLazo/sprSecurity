@@ -17,13 +17,13 @@ public class ExamResultBean {
 
 	@PostConstruct
 	private void init() {
-		try {
-			JobExecution execution = launcher.run(job, new JobParameters());
-			System.out.println("Job Exit Status : " + execution.getStatus());
-
-		} catch (JobExecutionException e) {
-			System.out.println("Job ExamResult failed");
-			e.printStackTrace();
-		}
+//		try {
+//			JobExecution execution = launcher.run(job, new JobParameters());
+//			System.out.println("Job Exit Status : " + execution.getStatus());
+//
+//		} catch (JobExecutionException e) {
+//			System.out.println("Job ExamResult failed");
+//			e.printStackTrace();
+//		}
 	}
 }
