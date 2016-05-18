@@ -1,0 +1,74 @@
+@CHARSET "ISO-8859-1";
+
+div {
+	background: white;
+	border-radius: 5px;
+	padding: 0px;
+	margin-right: 4px;
+	/* float: left;
+	height: 100%; */
+}
+
+.menu_div {
+	width: 15%;
+	background: url(../image/aluminium-brushed-metal-texture.jpg);
+	height: 93%;
+	margin: 1px;
+	float: left;
+}
+
+.body_div {
+	width: 99%;
+	box-shadow: 10px 10px grey;
+	height: 90%;
+	margin: 10px;
+	border-radius: 10px;
+}
+
+.menu_bar_div {
+	height: 7%;
+	margin: 4px;
+	background: url(../image/aluminium-brushed-metal-texture.jpg);
+	direction: rtl;
+}
+
+body {
+	background: url(../image/aluminium-brushed-metal-texture.jpg);
+}
+
+ul {
+	list-style-type: none;
+	margin: 2;
+	padding: 2;
+	width: 200px;
+	/* background-color: #f1f1f1; */
+}
+
+li a {
+	display: block;
+	color: white;
+	padding: 8px 0 8px 16px;
+	text-decoration: none;
+	border-radius: 4px;
+	border-style: solid;
+	border-width: 1px;
+	margin-bottom: 3px;
+}
+
+/* Change the link color on hover */
+ a:hover {
+	background-color: #555;
+	color: white;
+}
+
+.menu_link {
+
+	margin: 5px;
+	padding: 10px;
+/* 	border-left: solid;
+	border-width: 1px;
+ */	text-decoration: none;
+	float: left;
+	color: white;
+	
+}

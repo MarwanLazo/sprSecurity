@@ -9,6 +9,7 @@ import java.util.Map;
 import javax.annotation.PostConstruct;
 
 import org.dozer.CustomConverter;
+import org.dozer.DozerBeanMapper;
 import org.springframework.core.io.Resource;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 
@@ -20,17 +21,15 @@ import com.sprSecurity.spring.hibernate.entity.AbstractEntity;
 public abstract class AbstractTransformerImpl<Source extends AbstractDTO<?>, Target extends AbstractEntity<?>, DAO extends AbstractDAO>
 		implements AbstractTransformer<Source, Target> {
 
-	// @Inject
-	// private TempTableDozerConverter converter;
-
 	private final String	TMP_TABLE_CONVERTER	= "TempTableConverter";
 
+	private DozerBeanMapper	dozerBeanMapper;
 	private Class<Source>	source;
 	private Class<Target>	target;
 
 	@PostConstruct
 	private void init() throws IOException {
-
+		dozerBeanMapper = new DozerBeanMapper();
 		List<String> mappingFileUrls = new ArrayList<String>();
 		Resource[] resources = new PathMatchingResourcePatternResolver().getResources("classpath*:dozer/*");
 		for (Resource resource : resources) {

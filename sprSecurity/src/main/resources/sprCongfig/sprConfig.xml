@@ -54,6 +54,10 @@
 	<context:component-scan base-package="com.sprSecurity.spring.restws" />
 
 	<bean class="com.sprSecurity.spring.logging.LoggingAspect" id="logg" />
+	
+	<bean class="com.sprSecurity.spring.soapws.HelloSoap" id="WSSOAP" >
+	    <!-- <property name="service"  ref="tempTableService"/> -->
+	</bean>
 
 	<import resource="spring_hibernate.xml" />
 
@@ -61,6 +65,10 @@
 
 	<import resource="spring_WS.xml" />
 
+	<import resource="spring_security.xml" />
+
 	<import resource="classpath:batch/spring_batch.xml" />
+
+	
 
 </beans>

@@ -18,6 +18,7 @@
 		<dozar.version>5.5.1</dozar.version>
 		<Spring.batch>3.0.7.RELEASE</Spring.batch>
 		<joda-time.version>2.3</joda-time.version>
+		<spring.security.version>4.1.0.RELEASE</spring.security.version>
 	</properties>
 
 	<dependencies>
@@ -89,6 +90,21 @@
 			<artifactId>spring-batch-infrastructure</artifactId>
 			<version>${Spring.batch}</version>
 		</dependency>
+
+		<!-- Spring Security -->
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-web</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-config</artifactId>
+			<version>${spring.security.version}</version>
+		</dependency>
+
+
 		<!-- Hibernate -->
 		<dependency>
 			<groupId>org.hibernate</groupId>
@@ -171,13 +187,15 @@
 			<artifactId>joda-time</artifactId>
 			<version>${joda-time.version}</version>
 		</dependency>
-		
+
 		<dependency>
-	<groupId>org.jadira.usertype</groupId>
-	<artifactId>usertype.jodatime</artifactId>
-	<version>2.0.1</version>
-</dependency>
-		
+			<groupId>org.jadira.usertype</groupId>
+			<artifactId>usertype.jodatime</artifactId>
+			<version>2.0.1</version>
+		</dependency>
+
+
+
 	</dependencies>
 
 
