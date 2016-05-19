@@ -1,7 +1,7 @@
 package com.sprSecurity.spring.jasper;
 
 public enum ReportType {
-	PDF(".pdf"), XLS(".xls"), XLSX(".xlsx"), HTML(".html"), XML(".xml");
+	PDF(".pdf"), XLS(".xls"), XLSX(".xlsx"), HTML(".html"), XML(".xml"),CSV(".csv");
 
 	private String format;
 

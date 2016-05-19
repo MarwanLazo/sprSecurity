@@ -17,6 +17,7 @@ import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 import com.sprSecurity.spring.data.service.TempTableService;
 import com.sprSecurity.spring.dto.TempTableDTO;
 import com.sprSecurity.spring.enums.Status;
+import com.sprSecurity.spring.jasper.ReportType;
 import com.sprSecurity.spring.jasper.dynamic.EmployeeReport;
 import com.sprSecurity.spring.jms.JMSMessageObject;
 import com.sprSecurity.spring.jms.JMSMessageSender;
@@ -59,7 +60,7 @@ public class HelloServlet extends HttpServlet {
 			dto = service.createEntity(dto);
 			logger.info("creation Done !! successfully	");
 			out.println(dto);
-			report.gernerateReport(null);
+			report.gernerateReport(null, ReportType.CSV);
 			messageSender.sendMessage(new JMSMessageObject(), QueueEnum.QUEUE_TEST);
 			out.println(service.findAll());
 		} finally {

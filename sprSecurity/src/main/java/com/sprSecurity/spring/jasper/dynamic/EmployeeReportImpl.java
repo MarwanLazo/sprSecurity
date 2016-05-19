@@ -26,7 +26,7 @@ import net.sf.jasperreports.engine.JasperPrint;
 public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 
 	@Override
-	public void gernerateReport(List<Employee> reports) {
+	public void gernerateReport(List<Employee> reports,ReportType type) {
 		System.out.print("Test App");
 		System.out.print("\nTest App");
 		if (reports == null || reports.isEmpty()) {
@@ -40,7 +40,7 @@ public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 			try {
 				JasperPrint jp = getReport(reports);
 				// JasperViewer jasperViewer = new JasperViewer(jp);
-				new ReportExporter(jp).export(ReportType.PDF);
+				new ReportExporter(jp).export(ReportType.CSV);
 
 				// jasperViewer.setVisible(true);
 			} catch (ColumnBuilderException e) {
