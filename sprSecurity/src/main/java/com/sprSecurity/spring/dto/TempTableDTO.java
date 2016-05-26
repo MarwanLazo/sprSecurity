@@ -12,6 +12,7 @@ import com.sprSecurity.spring.hibernate.entity.TempTableEB;
 import com.sprSecurity.spring.oval.UpperCase;
 import com.sprSecurity.spring.oval.ValidID;
 
+import net.sf.oval.constraint.Email;
 import net.sf.oval.constraint.MatchPattern;
 import net.sf.oval.constraint.NotBlank;
 
@@ -28,12 +29,14 @@ public class TempTableDTO extends AbstractDTO<String> {
 
 	@NotNull
 	@MatchPattern(pattern = EMAIL_PATTERN, message = "invalid email Oval")
+	@Email
 	private String				tempEmail;
+
+	private PersonPKDTO			person;
 
 	@JsonInclude(Include.NON_NULL)
 	private TempTableDTO		tempRef;
 
-	
 	private Date				createTime;
 
 	public TempTableDTO() {
@@ -115,6 +118,14 @@ public class TempTableDTO extends AbstractDTO<String> {
 
 	public void setCreateTime(Date createTime) {
 		this.createTime = createTime;
+	}
+
+	public PersonPKDTO getPerson() {
+		return person;
+	}
+
+	public void setPerson(PersonPKDTO person) {
+		this.person = person;
 	}
 
 }

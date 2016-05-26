@@ -13,14 +13,16 @@ import com.sprSecurity.ejb.TempTableEJB;
 import com.sprSecurity.spring.data.MainRepository;
 import com.sprSecurity.spring.dozer.AbstractTransformer;
 import com.sprSecurity.spring.dto.AbstractDTO;
+import com.sprSecurity.spring.dto.CompositePKDTO;
 import com.sprSecurity.spring.hibernate.entity.AbstractEntity;
+import com.sprSecurity.spring.hibernate.entity.CompositePKEB;
 
 import net.sf.oval.ConstraintViolation;
 import net.sf.oval.Validator;
 import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
 import net.sf.oval.configuration.annotation.BeanValidationAnnotationsConfigurer;
 
-public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends AbstractDTO<PK>, Entity extends AbstractEntity<PK>, Repository extends MainRepository<Entity, PK>, TransFormer extends AbstractTransformer<DTO, Entity>>
+public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends AbstractDTO<PK>, Entity extends AbstractEntity<? extends Serializable>, Repository extends MainRepository<Entity, ? extends Serializable>, TransFormer extends AbstractTransformer<DTO, Entity>>
 		implements AbstractDAO<PK, DTO> {
 
 	private Logger					logger	= Logger.getLogger(AbstractDAOImpl.class);
@@ -92,7 +94,8 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		tableEJB.get();
 		logger.info("Find  Entity if exist");
 		if (pk != null) {
-			Entity eb = getRepository().findOne(pk);
+
+			Entity eb = (Entity) getRepository().findEntityById(getPkEB(pk));
 			logger.info("Entity founded");
 			return getTransFormer().transfromToDTO(eb);
 		} else {
@@ -100,6 +103,17 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 			return null;
 		}
 
+	}
+
+	@Override
+	public Serializable getPkEB(PK pk) {
+		if (pk instanceof CompositePKEB) {
+			return pk;
+		}
+		if (pk instanceof CompositePKDTO) {
+			return getTransFormer().getDozerBeanMapper().map(pk, ((CompositePKEB) pk).getClass());
+		}
+		return pk;
 	}
 
 	@Override
@@ -117,7 +131,8 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 
 		logger.info("Find  Entity if exist");
 		if (entity.getPK() != null && entity.getPK().getClass().isAssignableFrom(Serializable.class)) {
-			return getRepository().findOne(entity.getPK());
+
+			return (Entity) getRepository().findEntityById(entity.getPK());
 		} else {
 			// do some senario to get entity by its composite PK
 			return null;

@@ -14,7 +14,10 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.sprSecurity.spring.data.service.PersonService;
 import com.sprSecurity.spring.data.service.TempTableService;
+import com.sprSecurity.spring.dto.PersonDTO;
+import com.sprSecurity.spring.dto.PersonPKDTO;
 import com.sprSecurity.spring.dto.TempTableDTO;
 import com.sprSecurity.spring.enums.Status;
 import com.sprSecurity.spring.jasper.ReportType;
@@ -28,11 +31,14 @@ public class HelloServlet extends HttpServlet {
 	private static final long	serialVersionUID	= 1L;
 	@Inject
 	private TempTableService	service;
+
+	@Inject
+	private PersonService		personService;
 	@Inject
 	private EmployeeReport		report;
 	@Inject
-	private JMSMessageSender messageSender;
-	
+	private JMSMessageSender	messageSender;
+
 	private Logger				logger				= Logger.getLogger(HelloServlet.class);
 
 	public HelloServlet() {
@@ -50,6 +56,13 @@ public class HelloServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		try {
+			
+			PersonDTO p = new PersonDTO();
+			p.setId(new PersonPKDTO("Ali", "Ali Sami"));
+			p.setJob("Dr.");
+			p.setAge(32);		
+			out.println(personService.createEntity(p));
+			out.println("================================");
 			TempTableDTO dto = new TempTableDTO();
 			dto.setTempTableName(request.getParameter("name"));
 			dto.setTempEmail(request.getParameter("email"));

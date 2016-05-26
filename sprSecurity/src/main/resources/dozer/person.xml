@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
+
+	<mapping>
+		<class-a>com.sprSecurity.spring.hibernate.entity.PersonEB</class-a>
+		<class-b>com.sprSecurity.spring.dto.PersonDTO</class-b>
+	</mapping>
+
+	<mapping>
+		<class-a>com.sprSecurity.spring.hibernate.entity.PersonPKEB</class-a>
+		<class-b>com.sprSecurity.spring.dto.PersonPKDTO</class-b>
+	</mapping>
+</mappings>

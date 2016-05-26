@@ -9,9 +9,13 @@
 			<a>id</a>
 			<b>tempTableName</b>
 		</field>
-		<field custom-converter-id="TempTableConverter">
+		<field custom-converter-id="DozerConverter">
 			<a>tempRef</a>
 			<b>tempRef</b>
+		</field>
+		<field custom-converter-id="DozerConverter">
+			<a>person</a>
+			<b>person</b>
 		</field>
 	</mapping>
 </mappings>

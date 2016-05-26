@@ -21,7 +21,7 @@ import com.sprSecurity.spring.hibernate.entity.AbstractEntity;
 public abstract class AbstractTransformerImpl<Source extends AbstractDTO<?>, Target extends AbstractEntity<?>, DAO extends AbstractDAO>
 		implements AbstractTransformer<Source, Target> {
 
-	private final String	TMP_TABLE_CONVERTER	= "TempTableConverter";
+	private final String	TMP_TABLE_CONVERTER	= "DozerConverter";
 
 	private DozerBeanMapper	dozerBeanMapper;
 	private Class<Source>	source;
@@ -38,7 +38,7 @@ public abstract class AbstractTransformerImpl<Source extends AbstractDTO<?>, Tar
 
 		dozerBeanMapper.setMappingFiles(mappingFileUrls);
 		Map<String, CustomConverter> customConvertersWithId = new HashMap<String, CustomConverter>();
-		customConvertersWithId.put(TMP_TABLE_CONVERTER, new DozerCustomConverter<DAO, Source>(getDAO()));
+		customConvertersWithId.put(TMP_TABLE_CONVERTER, new DozerCustomConverter<DAO, Source>(getDAO(),dozerBeanMapper));
 		dozerBeanMapper.setCustomConvertersWithId(customConvertersWithId);
 
 	}
@@ -77,6 +77,10 @@ public abstract class AbstractTransformerImpl<Source extends AbstractDTO<?>, Tar
 			targets.add(transfromToEntity(dto));
 		}
 		return targets;
+	}
+
+	public DozerBeanMapper getDozerBeanMapper() {
+		return dozerBeanMapper;
 	}
 
 }

@@ -11,22 +11,22 @@ import com.sprSecurity.spring.hibernate.entity.TempTableEB;
 
 @Service("TempTableDAO")
 public class TempTableDAOImpl extends AbstractDAOImpl<String, TempTableDTO, TempTableEB, TempTableRepository, TempTableTransformer> implements TempTableDAO {
-	
+
 	@Inject
-	private TempTableTransformer transformer;
-	
+	private TempTableTransformer	transformer;
+
 	@Inject
-	private TempTableRepository	 repository;
-	
+	private TempTableRepository		repository;
+
 	@Override
-	public TempTableTransformer getTransFormer () {
+	public TempTableTransformer getTransFormer() {
 		return transformer;
 	}
-	
+
 	@Override
-	public TempTableRepository getRepository () {
-		
+	public TempTableRepository getRepository() {
+
 		return repository;
 	}
-	
+
 }
