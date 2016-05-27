@@ -67,6 +67,7 @@ public class HelloServlet extends HttpServlet {
 			dto.setTempTableName(request.getParameter("name"));
 			dto.setTempEmail(request.getParameter("email"));
 			dto.setStatus(Status.ACTIVE);
+			dto.setPerson(p);
 			dto.setCreateTime(new Date());
 			dto.setTempRef(service.findEntityById("Adam"));
 			logger.info("sevlet method 'Sarvice' create or update  temp table");
