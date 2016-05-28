@@ -128,14 +128,16 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		
 		logger.info("Find  Entity if exist");
 		if (entity.getPK() != null && entity.getPK().getClass().isAssignableFrom(Serializable.class)) {
-			
-			return (Entity) getRepository().findEntityById(entity.getPK());
+			Entity eb = (Entity) getRepository().findEntityById(entity.getPK());
+			logger.info(" Entity Loaded Successfully with ID" + eb);
+			return eb;
 		} else {
-			// do some senario to get entity by its composite PK
+			logger.info("No Entity With Id: " + entity.getPKAsString());
 			return null;
 		}
 	}
 	
+	@Override
 	public Object method (Class<?> entityClassName , Object obj) {
 		Object pk = getPkEB(obj);
 		return em.find(entityClassName, pk);
