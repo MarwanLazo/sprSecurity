@@ -7,4 +7,6 @@ import javax.ejb.Remote;
 @Local
 public interface TempTableEJB {
 	void get();
+
+	void sartJob();
 }

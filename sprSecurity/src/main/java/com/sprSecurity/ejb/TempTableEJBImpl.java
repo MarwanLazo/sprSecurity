@@ -1,23 +1,25 @@
 package com.sprSecurity.ejb;
 
-import javax.annotation.PostConstruct;
 import javax.ejb.Stateless;
+
+import org.apache.log4j.Logger;
 
 @Stateless(mappedName = "TempTableEJB")
 public class TempTableEJBImpl implements TempTableEJB {
 
-	// @PersistenceContext(unitName="sprTest")
-	// private EntityManager entityManager;
-
-	@PostConstruct
-	private void init() {
-
-	}
+	private Logger	logger	= Logger.getLogger(TempTableEJBImpl.class);
+	private int		lap		= 1;
 
 	@Override
 	public void get() {
 		System.out.println("Test EJB");
-		// System.out.println(entityManager);
+	}
+
+	@Override
+	public void sartJob() {
+		logger.info("Start App ===============>>");
+		System.out.println("Start Job" + (lap++));
+		logger.info("End App <<===============");
 	}
 
 }
