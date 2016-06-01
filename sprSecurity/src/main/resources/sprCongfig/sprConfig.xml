@@ -69,6 +69,7 @@
 
 	<import resource="classpath:batch/spring_batch.xml" />
 
+	<mvc:resources mapping="resources/template/**" location="/resources/*/**" />
 	
 
 </beans>
