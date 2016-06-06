@@ -17,9 +17,9 @@ public class TempTableEJBImpl implements TempTableEJB {
 
 	@Override
 	public void sartJob() {
-		logger.info("Start App ===============>>");
+		logger.info("___________________________Start App ___________________________");
 		System.out.println("Start Job" + (lap++));
-		logger.info("End App <<===============");
+		logger.info("___________________________ End App ___________________________");
 	}
 
 }

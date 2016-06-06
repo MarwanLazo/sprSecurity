@@ -14,6 +14,6 @@ public class StartUPEJB {
 
 	@PostConstruct
 	public void applicationStartup() {
-		ejb.createTimer(10000L);
+//		ejb.createTimer(10000L);
 	}
 }
