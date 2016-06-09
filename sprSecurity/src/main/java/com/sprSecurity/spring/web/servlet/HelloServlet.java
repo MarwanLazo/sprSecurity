@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
 
+import javax.ejb.EJB;
 import javax.inject.Inject;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -14,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.apache.log4j.Logger;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
+import com.sprSecurity.ejb.TempTableEJB;
 import com.sprSecurity.spring.data.service.PersonService;
 import com.sprSecurity.spring.data.service.TempTableService;
 import com.sprSecurity.spring.dto.PersonDTO;
@@ -39,6 +41,10 @@ public class HelloServlet extends HttpServlet {
 	@Inject
 	private JMSMessageSender	messageSender;
 
+	@EJB	
+	private TempTableEJB	sender;
+
+	
 	private Logger				logger				= Logger.getLogger(HelloServlet.class);
 
 	public HelloServlet() {
@@ -56,6 +62,8 @@ public class HelloServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		try {
+			
+			sender.sendMail("Test Sending", "The Sent Body", "marwan@wipar.ch");
 			
 			PersonDTO p = new PersonDTO();
 			p.setId(new PersonPKDTO("Ali", "Ali Sami"));

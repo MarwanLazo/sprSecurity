@@ -9,4 +9,6 @@ public interface TempTableEJB {
 	void get();
 
 	void sartJob();
+
+	void sendMail(String subject, String body, String sendTo);
 }
