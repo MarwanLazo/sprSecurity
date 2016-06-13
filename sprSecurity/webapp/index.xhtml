@@ -26,104 +26,125 @@
 
 				<section class="content">
 				<div class="col-md-3">
-					<div class="box box-solid">
-						<div class="box-header with-border">
+					<modal:widget header="Patient">
+						<f:facet name="icons">
 							<i class="fa fa-search"></i>
+						</f:facet>
+						<f:facet name="body">
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Id</label> <input
+									type="email" class="form-control" id="exampleInputEmail1" />
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Name</label> <input
+									type="email" class="form-control" id="exampleInput" />
+							</div>
+						</f:facet>
+					</modal:widget>
 
-							<h3 class="box-title">Patient</h3>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<dl>
 
-								<div class="form-group">
-									<label for="exampleInputEmail1">Patient Id</label> <input
-										type="email" class="form-control" id="exampleInputEmail1" />
-								</div>
-
-								<div class="form-group">
-									<label for="exampleInputEmail1">Patient Name</label> <input
-										type="email" class="form-control" id="exampleInput" />
-								</div>
-
-							</dl>
-						</div>
-						<!-- /.box-body -->
-					</div>
 					<!-- /.box -->
 				</div>
 				<div class="col-md-9">
-					<div class="box box-solid">
-						<div class="box-header with-border">
-							<i class="fa fa-list "></i> <i class="fa fa-plus pull-right"
-								data-toggle="tooltip" data-placement="top"
-								title="Create Or Update Patient"
-								onclick="$('#myModal').modal('show')"></i> <i
-								class="fa fa-minus pull-right" data-toggle="tooltip"
-								data-placement="top" title="Delete Patient"></i>
-							<h3 class="box-title">Description</h3>
-						</div>
-						<!-- /.box-header -->
-						<div class="box-body">
-							<dl>
-								<dl>
 
-									<div class="form-group">
-										<label for="exampleInputEmail1">Patient Id</label> <input
-											type="email" class="form-control" id="exampleInputEmail1" />
-									</div>
+					<modal:widget header="Description">
+						<f:facet name="icons">
+							<i class="fa fa-list "></i>
+							<i class="fa fa-plus pull-right" data-toggle="tooltip"	data-placement="top" title="Create Or Update Patient" onclick="$('#myModal').modal('show')"/>
+							<i class="fa fa-minus pull-right" data-toggle="tooltip"	data-placement="top" title="Delete Patient"/>
+						</f:facet>
+						<f:facet name="body">
 
-									<div class="form-group">
-										<label for="exampleInputEmail1">Patient Name</label> <input
-											type="email" class="form-control" id="exampleInput" />
-									</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Id</label> 
+								<input type="email" class="form-control" id="exampleInputEmail1" />
+							</div>
+
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Name</label> 
+								<input type="email" class="form-control" id="exampleInput" />
+							</div>
 
 
 
-									<div class="form-group">
-										<label for="exampleInputEmail1">Patient Full Name</label> <input
-											type="email" class="form-control" id="exampleInputEmail1" />
-									</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Full Name</label> 
+								<input type="email" class="form-control" id="exampleInputEmail1" />
+							</div>
 
-									<div class="form-group">
-										<label for="exampleInputEmail1">Patient Age</label> <input
-											type="email" class="form-control" id="exampleInput" />
-									</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Age</label> 
+								<input type="email" class="form-control" id="exampleInput" />
+							</div>
 
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Vist Cause</label>
+								<textarea rows="5" cols="10" type="email" class="form-control"	id="exampleInputEmail1" />
+							</div>
 
-
-									<div class="form-group">
-										<label for="exampleInputEmail1">Patient Vist Cause</label>
-										<textarea rows="5" cols="10" type="email" class="form-control"
-											id="exampleInputEmail1" />
-									</div>
-
-									<div class="form-group">
-										<label for="exampleInputEmail1">Patient Notes</label>
-										<textarea rows="5" cols="10" type="email" class="form-control"
-											id="exampleInput" />
-									</div>
+							<div class="form-group">
+								<label for="exampleInputEmail1">Patient Notes</label>
+								<textarea rows="5" cols="10" type="email" class="form-control" id="exampleInput" />
+							</div>
 
 
-
-								</dl>
-
-
-							</dl>
-						</div>
-						<!-- /.box-body -->
-					</div>
-					<!-- /.box -->
+						</f:facet>
+					</modal:widget>
 				</div>
 				</section>
 			</div>
 
-			<modal:modal id="model" modelID="myModal">
-				<f:facet name="footer">
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Save Patient</button>
+			<modal:modal id="model" modelID="myModal"
+				header="Temp Table Maintenance" formID="maintainForm">
+
+				<f:facet name="body">
+					<div class="form-group">
+						<label for="exampleInputEmail1">Patient Id</label> <input
+							type="email" class="form-control" id="exampleInputEmail1" />
 					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Patient Name</label> <input
+							type="email" class="form-control" id="exampleInput" />
+					</div>
+
+
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Patient Full Name</label> <input
+							type="email" class="form-control" id="exampleInputEmail1" />
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Patient Age</label> <input
+							type="email" class="form-control" id="exampleInput" />
+					</div>
+
+
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Patient Vist Cause</label>
+						<textarea rows="5" cols="10" type="email" class="form-control"
+							id="exampleInputEmail1" />
+					</div>
+
+					<div class="form-group">
+						<label for="exampleInputEmail1">Patient Notes</label>
+						<textarea rows="5" cols="10" type="email" class="form-control"
+							id="exampleInput" />
+					</div>
+
+
+				</f:facet>
+
+				<f:facet name="footer">
+
+					<h:commandButton styleClass="btn btn-default" value="Close"
+						type="button" onclick="$('#myModal').modal('hide')" />
+					<h:commandButton styleClass="btn btn-primary" value="Save Patient"
+						type="button" onclick="$('#myModal').modal('hide')" />
+
 				</f:facet>
 			</modal:modal>
 		</ui:define>

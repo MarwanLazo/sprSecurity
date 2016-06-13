@@ -2,12 +2,17 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:composite="http://java.sun.com/jsf/composite">
+	xmlns:composite="http://java.sun.com/jsf/composite"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+
 
 <!-- INTERFACE -->
 <composite:interface>
-	<composite:attribute name="modelID"/>
+	<composite:attribute name="modelID" />
+	<composite:attribute name="header" />
+	<composite:attribute name="formID"  required="true"/>
 </composite:interface>
 
 <!-- IMPLEMENTATION -->
@@ -16,8 +21,8 @@
 
 	<!-- Modal -->
 
-	<div class="modal fade" id="#{cc.attrs.modelID}" tabindex="-1" role="dialog"
-		aria-labelledby="exampleModalLabel">
+	<div class="modal fade" id="#{cc.attrs.modelID}" tabindex="-1"
+		role="dialog" aria-labelledby="exampleModalLabel">
 		<div class="modal-dialog" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -25,52 +30,16 @@
 						aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
-					<h1 class="modal-title" id="exampleModalLabel">Patient
-						maintenance</h1>
+					<h3 class="modal-title" id="exampleModalLabel">#{cc.attrs.header}</h3>
 				</div>
-				<div class="modal-body">
-					<form>
-						<div class="form-group">
-							<label for="exampleInputEmail1">Patient Id</label> <input
-								type="email" class="form-control" id="exampleInputEmail1" />
-						</div>
-
-						<div class="form-group">
-							<label for="exampleInputEmail1">Patient Name</label> <input
-								type="email" class="form-control" id="exampleInput" />
-						</div>
-
-
-
-						<div class="form-group">
-							<label for="exampleInputEmail1">Patient Full Name</label> <input
-								type="email" class="form-control" id="exampleInputEmail1" />
-						</div>
-
-						<div class="form-group">
-							<label for="exampleInputEmail1">Patient Age</label> <input
-								type="email" class="form-control" id="exampleInput" />
-						</div>
-
-
-
-						<div class="form-group">
-							<label for="exampleInputEmail1">Patient Vist Cause</label>
-							<textarea rows="5" cols="10" type="email" class="form-control"
-								id="exampleInputEmail1" />
-						</div>
-
-						<div class="form-group">
-							<label for="exampleInputEmail1">Patient Notes</label>
-							<textarea rows="5" cols="10" type="email" class="form-control"
-								id="exampleInput" />
-						</div>
-
-
-					</form>
-				</div>
-				<composite:renderFacet name="footer"/>
-		
+				<h:form id="#{cc.attrs.formID}">
+					<div class="modal-body">
+						<composite:renderFacet name="body" />
+					</div>
+					<div class="modal-footer">
+						<composite:renderFacet name="footer" />
+					</div>
+				</h:form>
 			</div>
 		</div>
 	</div>
