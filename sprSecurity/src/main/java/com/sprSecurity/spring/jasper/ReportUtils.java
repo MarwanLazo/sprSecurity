@@ -96,4 +96,9 @@ public abstract class ReportUtils {
 		return columnState;
 	}
 
+	
+	protected AbstractColumn createColumn(String property, Class<?> type,  int width) throws ColumnBuilderException {
+		AbstractColumn columnState = ColumnBuilder.getNew().setColumnProperty(property, type.getName()).setWidth(Integer.valueOf(width)).build();
+		return columnState;
+	}
 }

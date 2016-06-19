@@ -1,6 +1,7 @@
 package com.sprSecurity.spring.jasper.dynamic;
 
 import java.awt.Color;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -40,7 +41,13 @@ public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 			try {
 				JasperPrint jp = getReport(reports);
 				// JasperViewer jasperViewer = new JasperViewer(jp);
-				new ReportExporter(jp).export(ReportType.CSV);
+				
+				ReportExporter.export(ReportType.PDF,jp);
+				/*ReportExporter.export(ReportType.XLS,jp);
+				ReportExporter.export(ReportType.XLSX,jp);
+				ReportExporter.export(ReportType.XML,jp);
+				ReportExporter.export(ReportType.HTML,jp);*/
+				
 
 				// jasperViewer.setVisible(true);
 			} catch (ColumnBuilderException e) {
@@ -48,6 +55,9 @@ public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 			} catch (JRException e) {
 				e.printStackTrace();
 			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
