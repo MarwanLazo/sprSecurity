@@ -1,5 +1,7 @@
 package com.sprSecurity.spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sprSecurity.spring.hibernate.entity.PersonEB;
 
 public class PersonDTO extends AbstractDTO<PersonPKDTO> {
@@ -49,16 +51,22 @@ public class PersonDTO extends AbstractDTO<PersonPKDTO> {
 		this.job = job;
 	}
 
+	@JsonIgnore
+	@JsonProperty(value = "pK")
 	@Override
 	public PersonPKDTO getPK() {
 		return getId();
 	}
 
+	@JsonIgnore
+	@JsonProperty(value = "pKAsString")
 	@Override
 	public String getPKAsString() {
 		return getId().toString();
 	}
 
+	@JsonIgnore
+	@JsonProperty(value = "entityClass")
 	@Override
 	public Class<?> getEntityClass() {
 		return PersonEB.class;

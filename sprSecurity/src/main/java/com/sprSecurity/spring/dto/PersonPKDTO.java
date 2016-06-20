@@ -1,5 +1,7 @@
 package com.sprSecurity.spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sprSecurity.spring.hibernate.entity.PersonPKEB;
 
 public class PersonPKDTO implements CompositePKDTO {
@@ -59,6 +61,8 @@ public class PersonPKDTO implements CompositePKDTO {
 	
 	
 
+	@JsonIgnore
+	@JsonProperty(value = "pKClass")
 	@Override
 	public Class<?> getPKClass () {
 		return PersonPKEB.class;
