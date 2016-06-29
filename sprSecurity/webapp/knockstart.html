@@ -8,54 +8,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <script type="text/javascript"
 	src="resources/js/knockout/knockout-3.4.0.js"></script>
-<script type="text/javascript" src="resources/js/knockout/knockout.js" defer="defer"></script>
+<script type="text/javascript" src="resources/js/knockout/knockout.js"
+	defer="defer"></script>
 
 </head>
 <body>
 
-<form id="employeeForm" name="employeeForm" method="POST">
-    <div id="form-root">
-        <div>
-            <label class="form-label">First Name:</label>
-            
-            <input type="text" id="txtFirstName" name="txtFirstName" data-bind="value:FirstName" />
-        </div>
-         <div>
-            <label class="form-label">Last Name:</label>
-            
-            <input type="text" id="txtLastName" name="txtLastName" data-bind="value:LastName"  />
-        </div>
-        <div>
-            <label class="form-label">Full Name:</label>
-           
-            <input type="text" id="txtFullName" name="txtFullName"  data-bind="value:FullName" readonly="readonly"  />
-        </div>
-        <div>
-            <label class="form-label">Date Of Birth:</label>
-            
-            <input type="text" id="txtDateOfBirth" name="dateOfBirth" data-bind="value:DateOfBirth"  />
-        </div>
-        <div>
-            <label>Education:</label>
-            
-            <input type="checkbox" value="graduation" id="chkGraduation"  name="chkGraduation" data-bind="checked:EducationList" />Graduation
-            <input type="checkbox" value="postGraduation"   id="chkPostGraduation" name="chkPostGraduation"  data-bind="checked:EducationList" />PostGraduation
-        </div>
-        <div>
-            <label>Gender:</label>
-            <input type="radio" id="rdoMale" name="gender"    value="0"  data-bind="checked:Gender" />Male
-            <input type="radio" id="rdoFeMale" name="gender"   value="1" data-bind="checked:Gender"  />FeMale
-        </div>
-        <div>
-            <label class="form-label">Department:</label>
-            <select id="ddlDepartment" name="ddlDepartment"  data-bind="options:DepartmentList, optionsValue:'Id', optionsText:'Name', value:DepartmentId">
-            </select>
-        </div>
-        <div>
-            <input type="button" id="btnSubmit"   value="Submit" data-bind = "click: submit" />
-             <input type="button" id="btnReset"   value="Reset" />
-        </div>
-    </div>
-</form>
+The name is <span data-bind="text: personName"></span>
+<button type="button" name="click" value="click" onclick="testFunc()" >click</button>
+
+
 </body>
 </html>

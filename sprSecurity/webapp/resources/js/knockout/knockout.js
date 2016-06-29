@@ -1,30 +1,47 @@
-
-function Employee() {
-	var that = this;
-	that.LastName = ko.observable("");
-	that.FirstName = ko.observable("");
+var myViewModel = {
+	personName : 'Boooooooooooooooooob',
+	personAge : 123,
 	
-	that.FullName = ko.computed(function() {
-		return that.FirstName() + " " + that.LastName();	
-	});
-	that.DateOfBirth = ko.observable("");
-	that.EducationList = ko.observableArray();
-	that.Gender = ko.observable("0");
-	that.DepartmentList = ko.observableArray([ 
-	                                           {Id : '0',Name : "CSE"},
-	                                           {Id : '1',Name : "MBA"} 
-	                                           ]);
-	that.DepartmentId = ko.observable("1");
-	that.submit=function(){
-		console.log(that.FirstName());
-		console.log(that.LastName());
-		console.log(that.FullName());
-		console.log(that.DateOfBirth());
-		console.log(that.EducationList());
-		console.log(that.Gender());
-		console.log(that.DepartmentId());
-		
-		return;
-	};
+};
+
+ko.applyBindings(myViewModel);
+
+function testFunc() {
+	myViewModel.personName=('Ali') ;
+	alert(myViewModel.personName);
 }
-ko.applyBindings(Employee());
+
+// ---------- consume WS
+
+var out;
+
+function consumeWS(ele_id) {
+
+	var value = document.getElementById(ele_id).value;
+	console.log(value);
+	var url = 'http://localhost:7007/sprSecurity/rest/temptable/'.concat(value);
+	$.ajax({
+		type : 'Get',
+		url : url,
+		success : function(data) {
+			view_data(data);
+
+			console.log(data.tempEmail);
+			Employee.LastName = ko.observable(data.tempEmail);
+			console.log(Employee().LastName());
+			view_model.email = data.tempEmail;
+
+		}
+
+	});
+}
+
+function view_data(data) {
+	console.log(data);
+}
+
+var view_model
+{
+	email: "";
+};
+
