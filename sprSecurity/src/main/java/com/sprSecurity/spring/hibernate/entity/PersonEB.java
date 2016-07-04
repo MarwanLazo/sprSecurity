@@ -26,8 +26,8 @@ public class PersonEB extends AbstractEntity<PersonPKEB> {
 	@Column(name = "job")
 	private String				job;
 
-	// @Version
-	// private Integer version;
+//	@Version
+//	private Integer				version				= 0;
 
 	public PersonEB() {
 
@@ -109,12 +109,12 @@ public class PersonEB extends AbstractEntity<PersonPKEB> {
 		return PersonDTO.class;
 	}
 
-//	public Integer getVersion() {
-//		return version;
-//	}
-//
-//	public void setVersion(Integer version) {
-//		this.version = version;
-//	}
+	// public Integer getVersion() {
+	// return version;
+	// }
+	//
+	// public void setVersion(Integer version) {
+	// this.version = version;
+	// }
 
 }

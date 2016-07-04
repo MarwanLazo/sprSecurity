@@ -53,7 +53,7 @@ public class HelloServlet extends HttpServlet {
 			PersonDTO p = new PersonDTO();
 			p.setId(new PersonPKDTO("Ali_2", "Ali Sami_2"));
 			p.setJob("Eng.");
-			p.setAge(35);		
+			p.setAge(32);		
 			out.println(personService.updateEntity(p));
 			out.println("================================");
 //			TempTableDTO dto = new TempTableDTO();

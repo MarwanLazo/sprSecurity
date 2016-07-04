@@ -1,8 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
+<meta name="_csrf_parameter" content="_csrf" />
+<meta name="_csrf_header" content="X-CSRF-TOKEN" />
+<meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script type="text/javascript" src="resources/js/angular.js"></script>
@@ -16,12 +20,14 @@ input.ng-invalid {
 	/* background: red; */
 }
 
-#blank_row
-{
-    height: 2px !important; /* Overwrite any previous rules */
-    background-color: #FFFFFF;
+button {
+	vertical-align: top;
 }
 
+#blank_row {
+	height: 2px !important; /* Overwrite any previous rules */
+	background-color: #FFFFFF;
+}
 </style>
 </head>
 <body ng-app="myApp">
@@ -43,29 +49,33 @@ input.ng-invalid {
 	<!--  -->
 
 	<div ng-controller="myCtrl">
-	<br><br>
-		<input type="text" ng-model="color">{{color}} 
-	<br><br>
+		<br> <br> <input type="text" ng-model="color">{{color}}
+		<br> <br>
 
-
-		First Name: <input type="text" ng-model="firstName"><br>
-		Last Name: <input type="text" ng-model="lastName"><br> <br>
-		Full Name: {{firstName + " " + lastName}}
+		<form name="formTemp">
+			First Name: <input type="text" ng-model="tempTable.tempTableName"
+				required /> <br> Last Name: <input name="email" type="email"
+				ng-model="tempTable.tempEmail"></input> <span
+				ng-show="formTemp.email.$error.email">Not a valid e-mail
+				address</span> <span>
+				<button class="btn btn-info" type="button" ng-click="submit()">submit</button>
+			</span>
+		</form>
+		<br> <br> Full Name: {{tempTable.tempTableName + " LAZO " +
+		tempTable.tempEmail}}
 
 	</div>
+
+
 	<br />
 
 	<div ng-controller="myCtrl1">
-	<br><br>
-		<input type="text" ng-model="color">{{color}} 
-	<br><br>
-
-
-		First Name: <input type="text" ng-model="firstName"><br>
-		Last Name: <input type="text" ng-model="lastName"><br> 
-		
-		Full Name: {{firstName + " " + lastName}} <br> <br> <input
-			type="text" ng-model="colo" ng-init="colo='red'" style="background: {{colo}}" />
+		<br> <br> <input type="text" ng-model="color">{{color}}
+		<br> <br> First Name: <input type="text"
+			ng-model="firstName"><br> Last Name: <input type="text"
+			ng-model="lastName"> <br> Full Name: {{firstName + " " +
+		lastName}} <br> <br> <input type="text" ng-model="colo"
+			ng-init="colo='red'" style="background: {{colo" />
 
 		<p>
 			The name is <span ng-init="person={firstName:'John',lastName:'Doe'}"

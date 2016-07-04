@@ -50,14 +50,15 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		return getTransFormer().transfromToDTO(eb);
 	}
 
-	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
+	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
 	public DTO updateEntity(DTO dto) {
 		if (!validate(dto))
 			return null;
 		logger.info("Update Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
-		eb = em.merge(eb);
+//		eb = em.merge(eb);
+		eb = getRepository().save(eb);
 		return getTransFormer().transfromToDTO(eb);
 	}
 
