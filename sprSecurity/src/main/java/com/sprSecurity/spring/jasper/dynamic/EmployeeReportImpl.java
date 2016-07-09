@@ -43,10 +43,10 @@ public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 				// JasperViewer jasperViewer = new JasperViewer(jp);
 				
 				ReportExporter.export(ReportType.PDF,jp);
-				/*ReportExporter.export(ReportType.XLS,jp);
+				ReportExporter.export(ReportType.XLS,jp);
 				ReportExporter.export(ReportType.XLSX,jp);
 				ReportExporter.export(ReportType.XML,jp);
-				ReportExporter.export(ReportType.HTML,jp);*/
+				ReportExporter.export(ReportType.HTML,jp);
 				
 
 				// jasperViewer.setVisible(true);

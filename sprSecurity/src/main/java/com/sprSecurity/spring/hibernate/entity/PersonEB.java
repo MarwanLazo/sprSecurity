@@ -1,5 +1,7 @@
 package com.sprSecurity.spring.hibernate.entity;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
@@ -109,12 +111,17 @@ public class PersonEB extends AbstractEntity<PersonPKEB> {
 		return PersonDTO.class;
 	}
 
-	// public Integer getVersion() {
-	// return version;
-	// }
-	//
-	// public void setVersion(Integer version) {
-	// this.version = version;
-	// }
+//	public Integer getVersion() {
+//		return version;
+//	}
+//
+//	public void setVersion(Integer version) {
+//		this.version = version;
+//	}
+
+	@Override
+	public Class<? extends AbstractEntity<? extends Serializable>> getEntityClass() {
+		return PersonEB.class;
+	}
 
 }

@@ -14,4 +14,5 @@ public abstract class AbstractEntity<PK extends Serializable> implements Seriali
 
 	public abstract Class<? extends AbstractDTO<? extends Serializable>> getDTOClass();
 
+	public abstract Class<? extends AbstractEntity<? extends Serializable>> getEntityClass();
 }

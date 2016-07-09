@@ -27,13 +27,13 @@ import net.sf.oval.configuration.annotation.BeanValidationAnnotationsConfigurer;
 public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends AbstractDTO<PK>, Entity extends AbstractEntity<? extends Serializable>, Repository extends MainRepository<Entity, ? extends Serializable>, TransFormer extends AbstractTransformer<DTO, Entity>>
 		implements AbstractDAO<PK, DTO> {
 
-	private Logger					logger	= Logger.getLogger(AbstractDAOImpl.class);
+	private Logger logger = Logger.getLogger(AbstractDAOImpl.class);
 	// java:global._auto_generated_ear_.sprSecurity.TempTableEJBImpl
 	@EJB(mappedName = "TempTableEJB#com.sprSecurity.ejb.TempTableEJB")
-	private TempTableEJB			tableEJB;
+	private TempTableEJB tableEJB;
 
 	@PersistenceContext
-	private transient EntityManager	em;
+	private transient EntityManager em;
 
 	public abstract TransFormer getTransFormer();
 
@@ -57,7 +57,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 			return null;
 		logger.info("Update Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
-//		eb = em.merge(eb);
+		// eb = em.merge(eb);
 		eb = getRepository().save(eb);
 		return getTransFormer().transfromToDTO(eb);
 	}
@@ -84,6 +84,11 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		if (pk != null) {
 			Serializable pkk = (Serializable) getPkEB(pk);
 			Entity eb = (Entity) getRepository().findEntityById(pkk);
+			if (eb == null) {
+				logger.info("No Entity founded with Id >> " + pk);
+				return null;
+			}
+
 			logger.info("Entity founded");
 			return getTransFormer().transfromToDTO(eb);
 		} else {

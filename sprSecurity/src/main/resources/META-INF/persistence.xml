@@ -21,7 +21,7 @@
 			<property name="org.hibernate.envers.revision_type_field_name"	value="REVTYPE" />
 			<property name="org.hibernate.envers.audit_strategy" value="org.hibernate.envers.strategy.DefaultAuditStrategy" />
 			<property name="org.hibernate.envers.track_entities_changed_in_revision" value="true" />
-			<!-- <property name="hibernate.hbm2ddl.auto" value="update" />  -->  
+			<property name="hibernate.hbm2ddl.auto" value="update" />    
 			<property name="connection.autoReconnect" value="true" />
 			<property name="connection.autoReconnectForPools" value="true" />
 			<property name="hibernate.is-connection-validation-required" value="true" />

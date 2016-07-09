@@ -65,7 +65,7 @@
 
 	<import resource="spring_WS.xml" />
 
-	<import resource="spring_security.xml" />
+	<!-- <import resource="spring_security.xml" /> -->
 
 	<import resource="classpath:batch/spring_batch.xml" />
 
