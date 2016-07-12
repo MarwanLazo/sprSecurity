@@ -34,8 +34,8 @@ public class TemptableRestWebService {
 	}
 
 	@RequestMapping(value = "/addtemptable/", method = RequestMethod.POST)
-	public ResponseEntity<Void> createUser(@RequestBody TempTableDTO tempTableDTO, UriComponentsBuilder ucBuilder) {
-		System.out.println("Creating User " + tempTableDTO.getTempTableName());
+	public ResponseEntity<Void> createTempTable(@RequestBody TempTableDTO tempTableDTO, UriComponentsBuilder ucBuilder) {
+		System.out.println("Creating Temp Table " + tempTableDTO.getTempTableName());
 		temp.createEntity(tempTableDTO);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/tempTable/{tempName}").buildAndExpand(tempTableDTO.getTempTableName()).toUri());
@@ -51,6 +51,21 @@ public class TemptableRestWebService {
 			return new ResponseEntity<TempTableDTO>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<TempTableDTO>(dto, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/deleteTemptable/{id}", method = RequestMethod.DELETE)
+	public ResponseEntity<TempTableDTO> deleteTempTable(@PathVariable("id") String id) {
+		System.out.println("Fetching & Deleting temp Table with id " + id);
+
+		TempTableDTO tempTable = temp.findEntityById(id);
+		if (tempTable == null) {
+			System.out.println("Unable to delete. TempTable with id " + id + " not found");
+			return new ResponseEntity<TempTableDTO>(HttpStatus.NOT_FOUND);
+		}
+
+		temp.deleteEntity(tempTable);
+		System.out.println(" TempTable with id " + id + " Deleted Successfully");
+		return new ResponseEntity<TempTableDTO>(HttpStatus.NO_CONTENT);
 	}
 
 	/**

@@ -102,6 +102,19 @@ button {
 		<w3-test-directive></w3-test-directive>
 
 		<div ng-controller="customersCtrl">
+		
+		<form name="formTemp">
+			First Name: <input type="text" ng-model="tempTable.tempTableName"
+				required /> <br> Last Name: <input name="email" type="email"
+				ng-model="tempTable.tempEmail"></input> <span
+				ng-show="formTemp.email.$error.email">Not a valid e-mail
+				address</span> <span>
+				<button class="btn btn-info" type="button" ng-click="submit()">submit</button>
+			</span>
+		</form>
+		<br> <br> Full Name: {{tempTable.tempTableName + " LAZO " +
+		tempTable.tempEmail}}
+		
 			<center>
 				<button type="button" ng-click="click()">click</button>
 				<table cellspacing="20" class="table blank_row">
@@ -112,7 +125,7 @@ button {
 						<th>Person Full Name</th>
 					</tr>
 					<tr ng-repeat="x in names">
-						<td>{{ x.tempTableName }}</td>
+						<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{ x.tempTableName }} </a></td>
 						<td>{{ x.tempEmail }}</td>
 						<td>{{ x.tempRef.tempTableName }}</td>
 						<td>{{ x.person.id.fullName }}</td>

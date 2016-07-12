@@ -123,7 +123,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 	private Entity findEntityById(Entity entity) {
 
 		logger.info("Find  Entity if exist");
-		if (entity.getPK() != null && entity.getPK().getClass().isAssignableFrom(Serializable.class)) {
+		if (entity.getPK() != null ) {
 			Entity eb = (Entity) getRepository().findEntityById(entity.getPK());
 			logger.info(" Entity Loaded Successfully with ID" + eb);
 			return eb;

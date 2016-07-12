@@ -14,9 +14,7 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
-import org.hibernate.search.annotations.Analyze;
 import org.hibernate.search.annotations.Field;
-import org.hibernate.search.annotations.Index;
 import org.hibernate.search.annotations.Indexed;
 import org.hibernate.search.annotations.Store;
 
@@ -30,39 +28,38 @@ import com.sprSecurity.spring.enums.Status;
 // @Cacheable
 // @Cache(usage = CacheConcurrencyStrategy.TRANSACTIONAL)
 public class TempTableEB extends AbstractEntity<String> {
-	private static final long serialVersionUID = 1L;
-	private static final String SATUS_USER_TYPE = "com.sprSecurity.spring.hibernate.usertype.StatusUserType";
-	private static final String FORMULA_QUERY = "SELECT p FROM PersonEB p WHERE p.id.name='Ali' and p.id.fullName='Ali Sami'";
+	private static final long	serialVersionUID	= 1L;
+	private static final String	SATUS_USER_TYPE		= "com.sprSecurity.spring.hibernate.usertype.StatusUserType";
+	// private static final String FORMULA_QUERY = "SELECT p FROM PersonEB p
+	// WHERE p.id.name='Ali' and p.id.fullName='Ali Sami'";
 
 	@Id
 	@Column(name = "TEMP_NAME")
-	@Field(analyze = Analyze.YES, index = Index.YES, store = Store.NO)
+	@Field(store = Store.NO)
 	@NotNull
-	private String id;
+	private String				id;
 
-	@Field(analyze = Analyze.YES, index = Index.YES, store = Store.NO)
+	@Field(store = Store.NO)
 	@Column(name = "TEMP_EMAIL")
-	private String tempEmail;
-	@Field(analyze = Analyze.YES, index = Index.YES, store = Store.NO)
-	@Column(name = "TEMP_REF")
-	private String tempRef;
+	private String				tempEmail;
 
+	@Field(store = Store.NO)
+	@Column(name = "TEMP_REF")
+	private String				tempRef;
+
+	@Field(store = Store.NO)
 	@Column(name = "active")
 	@Type(type = SATUS_USER_TYPE)
-	private Status status;
+	private Status				status;
 
+	@Field(store = Store.NO)
 	@Column(name = "create_time")
-	private Date createTime;
-	//
-	// @ManyToOne(fetch = FetchType.LAZY)
-	// @JoinColumns({ @JoinColumn(name = "f_name", referencedColumnName =
-	// "f_name"), @JoinColumn(name = "l_name", referencedColumnName = "l_name")
-	// })
-	//
-	@JoinColumns({ @JoinColumn(name = "l_name", referencedColumnName = "l_name"),
-			@JoinColumn(name = "f_name", referencedColumnName = "f_name") })
+	private Date				createTime;
+
+	
+	@JoinColumns({ @JoinColumn(name = "l_name", referencedColumnName = "l_name"), @JoinColumn(name = "f_name", referencedColumnName = "f_name") })
 	@ManyToOne
-	private PersonEB person;
+	private PersonEB			person;
 
 	public TempTableEB() {
 		super();
@@ -143,7 +140,6 @@ public class TempTableEB extends AbstractEntity<String> {
 
 	@Override
 	public Class<? extends AbstractEntity<? extends Serializable>> getEntityClass() {
-		// TODO Auto-generated method stub
 		return TempTableEB.class;
 	}
 
