@@ -6,7 +6,8 @@
 <meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 <script type="text/javascript" src="resources/js/angular.js"></script>
@@ -102,19 +103,24 @@ button {
 		<w3-test-directive></w3-test-directive>
 
 		<div ng-controller="customersCtrl">
-		
-		<form name="formTemp">
-			First Name: <input type="text" ng-model="tempTable.tempTableName"
-				required /> <br> Last Name: <input name="email" type="email"
-				ng-model="tempTable.tempEmail"></input> <span
-				ng-show="formTemp.email.$error.email">Not a valid e-mail
-				address</span> <span>
-				<button class="btn btn-info" type="button" ng-click="submit()">submit</button>
-			</span>
-		</form>
-		<br> <br> Full Name: {{tempTable.tempTableName + " LAZO " +
-		tempTable.tempEmail}}
-		
+
+			<form name="formTemp">
+				First Name: <input type="text" ng-model="tempTable.tempTableName"
+					required /> <br> Last Name: <input name="email" type="email"
+					ng-model="tempTable.tempEmail"></input> <span
+					ng-show="formTemp.email.$error.email">Not a valid e-mail
+					address</span> <span>
+					<button class="btn btn-info" type="button" ng-click="submit()">submit</button>
+				</span> <br />
+				
+				<p>selected item is : {{selectedItem}}</p>
+				<select ng-model="selectedItem">
+					<option ng-repeat="item in items" value="{{item}}">{{item}}</option>
+				</select>
+			</form>
+			<br> <br> Full Name: {{tempTable.tempTableName + " LAZO " +
+			tempTable.tempEmail}}
+
 			<center>
 				<button type="button" ng-click="click()">click</button>
 				<table cellspacing="20" class="table blank_row">
@@ -125,7 +131,8 @@ button {
 						<th>Person Full Name</th>
 					</tr>
 					<tr ng-repeat="x in names">
-						<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{ x.tempTableName }} </a></td>
+						<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{
+								x.tempTableName }} </a></td>
 						<td>{{ x.tempEmail }}</td>
 						<td>{{ x.tempRef.tempTableName }}</td>
 						<td>{{ x.person.id.fullName }}</td>

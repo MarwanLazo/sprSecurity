@@ -16,7 +16,7 @@ app.controller('myCtrl', function($scope, $location, $http) {
 				.success(function(rs, status, headers) {
 					$scope.PostDataResponse = rs;
 					console.log($scope.PostDataResponse);
-					 $scope.$emit('load_all_temptebles');
+					$scope.$emit('load_all_temptebles');
 				}).error(
 						function(rs, status, header) {
 							$scope.ResponseDetails = "Data: " + rs
@@ -49,8 +49,7 @@ app.controller('customersCtrl', function($scope, $http) {
 		load_all_temptebles();
 	};
 
-	
-	
+	$scope.items = [ 'one', 'two', 'three', 'four' ]
 	$scope.tempTable = {
 
 	};
@@ -72,10 +71,6 @@ app.controller('customersCtrl', function($scope, $http) {
 
 	}
 
-	
-	
-	
-	
 	function load_all_temptebles() {
 		$http.get("http://localhost:7007/sprSecurity/rest/temptable").then(
 				function(response) {
@@ -110,4 +105,10 @@ app.controller("calc", function($scope) {
 		$scope.Total_in_dollar = $scope.quantity * $scope.price;
 
 	};
+});
+
+// ------------------------------
+
+app.controller('Test', function($scope) {
+	$scope.items = [ 'one', 'two', 'three', 'four' ]
 });
