@@ -4,14 +4,14 @@
       <attribute name="provider-id" value="jsf-no-op-library-provider"/>
     </node>
   </facet>
-  <facet id="jpt.jpa">
-    <node name="libprov">
-      <attribute name="provider-id" value="jpa-no-op-library-provider"/>
-    </node>
-  </facet>
   <facet id="jst.jstl">
     <node name="libprov">
       <attribute name="provider-id" value="wls-shared-library-provider-jstl-1.2"/>
+    </node>
+  </facet>
+  <facet id="jpt.jpa">
+    <node name="libprov">
+      <attribute name="provider-id" value="jpa-no-op-library-provider"/>
     </node>
   </facet>
 </root>
