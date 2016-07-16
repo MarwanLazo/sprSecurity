@@ -9,19 +9,20 @@ import com.sprSecurity.spring.dto.AbstractDTO;
 
 public interface AbstractDAO<PK extends Serializable, DTO extends AbstractDTO<PK>> {
 	
-	DTO createEntity (DTO dto);
+	DTO createEntity(DTO dto);
 	
-	DTO updateEntity (DTO dto);
+	DTO updateEntity(DTO dto);
 	
-	boolean deleteEntity (DTO dto);
+	boolean deleteEntity(DTO dto);
 	
-	DTO findEntityById (PK pk);
+	DTO findEntityById(PK pk);
 	
-	List<DTO> findAll ();
+	List<DTO> findAll();
 	
-	EntityManager getEntityManager ();
+	EntityManager getEntityManager();
 	
-	Object getPkEB (Object pk);
+	Object getPkEB(Object pk);
 	
-	Object method (Class<?> clazz , Object obj);
+	Object method(Class<?> clazz, Object obj);
+	
 }

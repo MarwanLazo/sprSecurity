@@ -32,10 +32,12 @@ public class TempTableDTO extends AbstractDTO<String> {
 	@Email
 	private String				tempEmail;
 
+
 	private PersonDTO			person;
 
 	@JsonInclude(Include.NON_NULL)
 	private TempTableDTO		tempRef;
+
 
 	private Date				createTime;
 
@@ -120,6 +122,7 @@ public class TempTableDTO extends AbstractDTO<String> {
 		this.createTime = createTime;
 	}
 
+
 	
 
 	public void setPerson (PersonDTO person) {
@@ -129,5 +132,6 @@ public class TempTableDTO extends AbstractDTO<String> {
 	public PersonDTO getPerson () {
 		return person;
 	}
+
 
 }

@@ -1,9 +1,11 @@
 package com.sprSecurity.spring.restws;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;
 
+import org.apache.log4j.Logger;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -20,54 +22,57 @@ import com.sprSecurity.spring.dto.TempTableDTO;
 
 @RestController
 public class TemptableRestWebService {
-
+	private Logger				logger	= Logger.getLogger(TemptableRestWebService.class);
 	@Inject
-	private TempTableService temp;
-
+	private TempTableService	temp;
+	
 	@RequestMapping(value = "/temptable", method = RequestMethod.GET)
 	public ResponseEntity<List<TempTableDTO>> getAllTempTable() {
+		logger.info("Load All Temp Tables ======>>");
 		List<TempTableDTO> temps = temp.findAll();
-		if (temps.isEmpty()) {
-			return new ResponseEntity<List<TempTableDTO>>(HttpStatus.NO_CONTENT);
-		}
+		if (temps.isEmpty()) { return new ResponseEntity<List<TempTableDTO>>(HttpStatus.NO_CONTENT); }
 		return new ResponseEntity<List<TempTableDTO>>(temps, HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value = "/addtemptable/", method = RequestMethod.POST)
-	public ResponseEntity<Void> createTempTable(@RequestBody TempTableDTO tempTableDTO, UriComponentsBuilder ucBuilder) {
-		System.out.println("Creating Temp Table " + tempTableDTO.getTempTableName());
+	public ResponseEntity<Void> createTempTable(@RequestBody TempTableDTO tempTableDTO,
+	        UriComponentsBuilder ucBuilder) {
+		
+		logger.info("Creating Temp Table " + tempTableDTO.getTempTableName());
+		tempTableDTO.setCreateTime(new Date());
 		temp.createEntity(tempTableDTO);
 		HttpHeaders headers = new HttpHeaders();
-		headers.setLocation(ucBuilder.path("/tempTable/{tempName}").buildAndExpand(tempTableDTO.getTempTableName()).toUri());
+		headers.setLocation(
+		        ucBuilder.path("/tempTable/{tempName}").buildAndExpand(tempTableDTO.getTempTableName()).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
-
+	
 	@RequestMapping(value = "/temptable/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<TempTableDTO> getTempTable(@PathVariable("id") String id) {
-		System.out.println("Fetching Temp Table with id " + id);
+		logger.info("Fetching Temp Table with id " + id);
 		TempTableDTO dto = temp.findEntityById(id);
 		if (dto == null) {
-			System.out.println("User with id " + id + " not found");
+			logger.info("User with id " + id + " not found");
 			return new ResponseEntity<TempTableDTO>(HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity<TempTableDTO>(dto, HttpStatus.OK);
 	}
-
+	
 	@RequestMapping(value = "/deleteTemptable/{id}", method = RequestMethod.DELETE)
 	public ResponseEntity<TempTableDTO> deleteTempTable(@PathVariable("id") String id) {
-		System.out.println("Fetching & Deleting temp Table with id " + id);
-
+		logger.info("Fetching & Deleting temp Table with id " + id);
+		
 		TempTableDTO tempTable = temp.findEntityById(id);
 		if (tempTable == null) {
-			System.out.println("Unable to delete. TempTable with id " + id + " not found");
+			logger.info("Unable to delete. TempTable with id " + id + " not found");
 			return new ResponseEntity<TempTableDTO>(HttpStatus.NOT_FOUND);
 		}
-
+		
 		temp.deleteEntity(tempTable);
-		System.out.println(" TempTable with id " + id + " Deleted Successfully");
+		logger.info(" TempTable with id " + id + " Deleted Successfully");
 		return new ResponseEntity<TempTableDTO>(HttpStatus.NO_CONTENT);
 	}
-
+	
 	/**
 	 * 
 	 * @RestController public class HelloWorldRestController {

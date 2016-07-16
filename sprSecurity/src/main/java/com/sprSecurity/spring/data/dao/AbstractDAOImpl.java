@@ -25,47 +25,47 @@ import net.sf.oval.configuration.annotation.AnnotationsConfigurer;
 import net.sf.oval.configuration.annotation.BeanValidationAnnotationsConfigurer;
 
 public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends AbstractDTO<PK>, Entity extends AbstractEntity<? extends Serializable>, Repository extends MainRepository<Entity, ? extends Serializable>, TransFormer extends AbstractTransformer<DTO, Entity>>
-		implements AbstractDAO<PK, DTO> {
-
-	private Logger logger = Logger.getLogger(AbstractDAOImpl.class);
+        implements AbstractDAO<PK, DTO> {
+	
+	private Logger					logger	= Logger.getLogger(AbstractDAOImpl.class);
 	// java:global._auto_generated_ear_.sprSecurity.TempTableEJBImpl
 	@EJB(mappedName = "TempTableEJB#com.sprSecurity.ejb.TempTableEJB")
-	private TempTableEJB tableEJB;
-
+	private TempTableEJB			tableEJB;
+	
 	@PersistenceContext
-	private transient EntityManager em;
-
+	private transient EntityManager	em;
+	
 	public abstract TransFormer getTransFormer();
-
+	
 	public abstract Repository getRepository();
-
+	
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public DTO createEntity(DTO dto) {
 		if (!validate(dto))
-			return null;
+		    return null;
 		logger.info("Create Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
 		eb = getRepository().save(eb);
 		return getTransFormer().transfromToDTO(eb);
 	}
-
+	
 	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
 	public DTO updateEntity(DTO dto) {
 		if (!validate(dto))
-			return null;
+		    return null;
 		logger.info("Update Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
 		// eb = em.merge(eb);
 		eb = getRepository().save(eb);
 		return getTransFormer().transfromToDTO(eb);
 	}
-
+	
 	@Override
 	public boolean deleteEntity(DTO dto) {
 		if (!validate(dto))
-			return false;
+		    return false;
 		logger.info("delete Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
 		if (findEntityById(eb) != null) {
@@ -75,7 +75,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		}
 		return false;
 	}
-
+	
 	@Override
 	public DTO findEntityById(PK pk) {
 		logger.info("======================>> " + tableEJB);
@@ -88,42 +88,38 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 				logger.info("No Entity founded with Id >> " + pk);
 				return null;
 			}
-
+			
 			logger.info("Entity founded");
 			return getTransFormer().transfromToDTO(eb);
 		} else {
 			logger.info("No Entity founded with Id >> " + pk);
 			return null;
 		}
-
+		
 	}
-
+	
 	@Override
 	public Object getPkEB(Object pk) {
-		if (pk instanceof CompositePKEB) {
-			return pk;
-		}
-		if (pk instanceof CompositePKDTO) {
-			return getTransFormer().getDozerBeanMapper().map(pk, ((CompositePKDTO) pk).getPKClass());
-		}
+		if (pk instanceof CompositePKEB) { return pk; }
+		if (pk instanceof CompositePKDTO) { return getTransFormer().getDozerBeanMapper().map(pk, ((CompositePKDTO) pk).getPKClass()); }
 		return pk;
 	}
-
+	
 	@Override
 	public List<DTO> findAll() {
 		logger.info("Find All Entities");
 		return getTransFormer().transfromListToDTO(getRepository().findAll());
 	}
-
+	
 	@Override
 	public EntityManager getEntityManager() {
 		return em;
 	}
-
+	
 	private Entity findEntityById(Entity entity) {
-
+		
 		logger.info("Find  Entity if exist");
-		if (entity.getPK() != null ) {
+		if (entity.getPK() != null) {
 			Entity eb = (Entity) getRepository().findEntityById(entity.getPK());
 			logger.info(" Entity Loaded Successfully with ID" + eb);
 			return eb;
@@ -132,13 +128,13 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 			return null;
 		}
 	}
-
+	
 	@Override
 	public Object method(Class<?> entityClassName, Object obj) {
 		Object pk = getPkEB(obj);
 		return em.find(entityClassName, pk);
 	}
-
+	
 	private boolean validate(DTO dto) {
 		// TODO
 		AnnotationsConfigurer annotationsConfigurer;
@@ -147,7 +143,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		annotationsConfigurer = new AnnotationsConfigurer();
 		beanValidationAnnotationsConfigurer = new BeanValidationAnnotationsConfigurer();
 		validator = new Validator(annotationsConfigurer, beanValidationAnnotationsConfigurer);
-
+		
 		List<ConstraintViolation> errors = validator.validate(dto);
 		if (!errors.isEmpty()) {
 			for (ConstraintViolation constraintViolation : errors) {
@@ -157,5 +153,5 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		}
 		return true;
 	}
-
+	
 }

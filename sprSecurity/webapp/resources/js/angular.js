@@ -1,33 +1,5 @@
 var app = angular.module('myApp', []);
 
-app.run(function($rootScope) {
-	$rootScope.color = 'blue';
-});
-
-app.controller('myCtrl', function($scope, $location, $http) {
-	$scope.color = $location.absUrl();
-	$scope.tempTable = {
-
-	};
-	$scope.submit = function() {
-		var rs = JSON.stringify($scope.tempTable)
-		console.log(rs);
-		$http.post("http://localhost:7007/sprSecurity/rest/addtemptable/", rs)
-				.success(function(rs, status, headers) {
-					$scope.PostDataResponse = rs;
-					console.log($scope.PostDataResponse);
-					$scope.$emit('load_all_temptebles');
-				}).error(
-						function(rs, status, header) {
-							$scope.ResponseDetails = "Data: " + rs
-									+ "<br />status: " + status
-									+ "<br />headers: " + header;
-							console.log($scope.ResponseDetails);
-						});
-
-	}
-
-});
 
 app.controller('myCtrl1', function($scope) {
 	$scope.firstName = "John";
@@ -42,19 +14,19 @@ app
 						template : "<h1 style='color: green; text-decoration: underline;'>Made by a directive!</h1>"
 					};
 				});
-
+// ====================================================
 app.controller('customersCtrl', function($scope, $http) {
+
+	$scope.tempTable = {};
 
 	$scope.click = function() {
 		load_all_temptebles();
 	};
 
-	$scope.items = [ 'one', 'two', 'three', 'four' ]
-	$scope.tempTable = {
-
-	};
 	$scope.submit = function() {
-		var rs = JSON.stringify($scope.tempTable)
+
+		$scope.tempTable.tempRef = JSON.parse($scope.selectedItem);
+		var rs = JSON.stringify($scope.tempTable);
 		console.log(rs);
 		$http.post("http://localhost:7007/sprSecurity/rest/addtemptable/", rs)
 				.success(function(rs, status, headers) {
@@ -81,13 +53,16 @@ app.controller('customersCtrl', function($scope, $http) {
 	}
 
 	$scope.deleteItem = function(item) {
+
 		console.log(item);
 		$.ajax({
 			type : 'DELETE',
 			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'
 					+ item,
 			success : function(data, textStatus, jqXHR) {
-				alert('Wine deleted successfully');
+				console.log('------------------------------------');
+				console.log(JSON.parse($scope.selectedItem).name);
+				console.log('------------------------------------');
 				$scope.click();
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -108,7 +83,3 @@ app.controller("calc", function($scope) {
 });
 
 // ------------------------------
-
-app.controller('Test', function($scope) {
-	$scope.items = [ 'one', 'two', 'three', 'four' ]
-});
