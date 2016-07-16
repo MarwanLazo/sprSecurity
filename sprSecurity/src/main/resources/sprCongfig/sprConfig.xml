@@ -72,7 +72,6 @@
 
 	<mvc:resources mapping="resources/template/**" location="/resources/*/**" />
 	
-=======
 
 	<mvc:annotation-driven />
 	<context:annotation-config />
@@ -98,6 +97,5 @@
 	<import resource="spring_jms.xml" />
 
 	<import resource="spring_WS.xml" />
->>>>>>> branch 'deployable_App' of https://github.com/MarwanLazo/sprSecurity
 
 </beans>

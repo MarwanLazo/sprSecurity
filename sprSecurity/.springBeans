@@ -7,10 +7,7 @@
 	</configSuffixes>
 	<enableImports><![CDATA[false]]></enableImports>
 	<configs>
-<<<<<<< HEAD
 		<config>src/main/resources/sprCongfig/spring_security.xml</config>
-=======
->>>>>>> branch 'deployable_App' of https://github.com/MarwanLazo/sprSecurity
 	</configs>
 	<autoconfigs>
 		<config>webapp/WEB-INF/applicationContext.xml</config>
