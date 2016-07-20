@@ -33,31 +33,48 @@ button {
 </head>
 <body ng-app="myApp">
 
-	<br />
+	<div class="container-fluid">
+		<div class="row-fluid">
 
+			<w3-test-directive></w3-test-directive>
+
+			<div ng-controller="customersCtrl">
+
+				<form name="formTemp" class="">
+
+					<div class="form-group">
+						<label for="temp_Name">Temp Name</label> 
+						<input type="text" ng-model="tempTable.tempTableName"	required  class="form-control" id="temp_Name" name="temp_Name"	placeholder="Temp Name">
+						<span ng-show="formTemp.temp_Name.$error.temp_Name">Not a valid e-mail address</span>
+					</div>
+
+					<div class="form-group">
+						<label for="Temp_Email">temp Email</label> 
+						<input name="email" type="email" ng-model="tempTable.tempEmail"	required  class="form-control" id="Temp_Email"	placeholder="Email">
+						<span ng-show="formTemp.email.$error.email">Not a valid e-mail address</span>
+					</div>
+
+					<div class="form-group">
+						<label for="temp_ref">Temp Ref</label> 
+						<select ng-model="selectedItem" id="temp_ref" >
+							<option value="volvo">Volvo</option>
+							<option ng-repeat="item in names" value="{{item}}">{{item.tempTableName}}</option>
+						</select> 
+					</div>
 	
-		<w3-test-directive></w3-test-directive>
 
-		<div ng-controller="customersCtrl">
+					<button  class="btn btn-default" type="button" ng-click="submit()">submit</button>
+					<div class="row">
+						<p>selected item is : {{selectedItem}}</p>
+						<p>Full Name: {{tempTable.tempTableName + " - " +	tempTable.tempEmail}}</p>
+					</div>
+				</form>
+				<br> <br> 
+				
+				
+				
 
-			<form name="formTemp">
-				First Name: <input type="text" ng-model="tempTable.tempTableName"
-					required /> <br> Last Name: <input name="email" type="email"
-					ng-model="tempTable.tempEmail"></input> <span
-					ng-show="formTemp.email.$error.email">Not a valid e-mail
-					address</span> <span>
-					<button class="btn btn-info" type="button" ng-click="submit()">submit</button>
-				</span> <br />
 
-				<p>selected item is : {{selectedItem}}</p>
-				<select ng-model="selectedItem">
-					<option ng-repeat="item in names" value="{{item}}">{{item.tempTableName}}</option>
-				</select>
-			</form>
-			<br> <br> Full Name: {{tempTable.tempTableName + " - " +
-			tempTable.tempEmail}}
-
-			<center>
 				<button type="button" ng-click="click()">click</button>
 				<table cellspacing="20" class="table blank_row">
 					<tr>
@@ -74,22 +91,25 @@ button {
 						<td>{{ x.person.id.fullName }}</td>
 					</tr>
 				</table>
-			</center>
+
+			</div>
+
+			<form name="myForm">
+				Email: <input type="email" name="myAddress" ng-model="error">
+				<span ng-show="myForm.myAddress.$error.email">Not a valid
+					e-mail address</span>
+			</form>
+
+			<form name="myForm1" ng-init="myText = 'post@myweb.com'">
+				Email: <input type="email" name="myAddress" ng-model="myText"
+					required> <span ng-show="myForm1.myAddress.$error.email">Not
+					a valid e-mail address</span>
+				<h1>Status</h1>
+				{{myForm1.myAddress.$valid}}
+				{{myForm1.myAddress.$dirty}}
+				{{myForm1.myAddress.$touched}}
+			</form>
 		</div>
-
-		<form name="myForm">
-			Email: <input type="email" name="myAddress" ng-model="error">
-			<span ng-show="myForm.myAddress.$error.email">Not a valid
-				e-mail address</span>
-		</form>
-
-		<form name="myForm1" ng-init="myText = 'post@myweb.com'">
-			Email: <input type="email" name="myAddress" ng-model="myText"
-				required> <span ng-show="myForm1.myAddress.$error.email">Not
-				a valid e-mail address</span>
-			<h1>Status</h1>
-			{{myForm1.myAddress.$valid}} {{myForm1.myAddress.$dirty}}
-			{{myForm1.myAddress.$touched}}
-		</form>
+	</div>
 </body>
 </html>

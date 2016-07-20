@@ -12,32 +12,30 @@ import com.sprSecurity.spring.hibernate.entity.AbstractEntity;
 
 @SuppressWarnings("rawtypes")
 public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractDTO> implements ConfigurableCustomConverter {
-	
-	private Logger			logger = Logger.getLogger(DozerCustomConverter.class);
-	
+
+	private Logger			logger	= Logger.getLogger(DozerCustomConverter.class);
+
 	private DAO				service;
-	
+
 	private DozerBeanMapper	dozerBeanMapper;
-	
+
 	public DozerCustomConverter(DAO service, DozerBeanMapper dozerBeanMapper) {
 		this.service = service;
 		this.dozerBeanMapper = dozerBeanMapper;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Override
-	public Object convert (Object targetFieldValue , Object sourceFieldValue , Class<?> targetClazz , Class<?> sourceClazz) {
+	public Object convert(Object targetFieldValue, Object sourceFieldValue, Class<?> targetClazz, Class<?> sourceClazz) {
 		logger.info("Temp Table Converter sart with paramter: Marwan");
-		logger.info("targetFieldValue:" + targetFieldValue);
-		logger.info("sourceFieldValue:" + sourceFieldValue);
 		logger.info("targetClazz:" + targetClazz);
 		logger.info("sourceClazz:" + sourceClazz);
-		
+
 		if (targetFieldValue == null && sourceFieldValue == null) {
 			return null;
 		}
 		Serializable object = null;
-		
+
 		if (AbstractDTO.class.isAssignableFrom(targetClazz)) {
 			if (AbstractEntity.class.isAssignableFrom(sourceClazz)) {
 				// source field value is entity bean
@@ -48,8 +46,7 @@ public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractD
 				object = (Serializable) sourceFieldValue;
 				return service.findEntityById(object);
 			}
-			
-			
+
 		} else if (AbstractEntity.class.isAssignableFrom(targetClazz)) {
 			// TODO comment ! not Implemented now as I am not need It <<== NOW
 			// ==>>
@@ -62,19 +59,19 @@ public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractD
 				AbstractDTO dto = service.findEntityById((Serializable) sourceFieldValue);
 				return dozerBeanMapper.map(dto, dto.getEntityClass());
 			}
-			
+
 		} else {
-			
+
 			return ((AbstractDTO) sourceFieldValue).getPK();
 
 		}
 
 	}
-	
+
 	@Override
-	public void setParameter (String parameter) {
+	public void setParameter(String parameter) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
 }
