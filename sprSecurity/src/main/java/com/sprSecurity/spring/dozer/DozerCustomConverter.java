@@ -27,7 +27,6 @@ public class DozerCustomConverter<DAO extends AbstractDAO, DTO extends AbstractD
 	@SuppressWarnings("unchecked")
 	@Override
 	public Object convert(Object targetFieldValue, Object sourceFieldValue, Class<?> targetClazz, Class<?> sourceClazz) {
-		logger.info("Temp Table Converter sart with paramter: Marwan");
 		logger.info("targetClazz:" + targetClazz);
 		logger.info("sourceClazz:" + sourceClazz);
 
