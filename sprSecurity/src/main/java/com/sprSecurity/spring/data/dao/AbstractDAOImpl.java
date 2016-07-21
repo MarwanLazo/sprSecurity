@@ -8,8 +8,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.apache.log4j.Logger;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.sprSecurity.ejb.TempTableEJB;
 import com.sprSecurity.spring.data.MainRepository;
@@ -27,19 +25,18 @@ import net.sf.oval.configuration.annotation.BeanValidationAnnotationsConfigurer;
 public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends AbstractDTO<PK>, Entity extends AbstractEntity<? extends Serializable>, Repository extends MainRepository<Entity, ? extends Serializable>, TransFormer extends AbstractTransformer<DTO, Entity>>
 		implements AbstractDAO<PK, DTO> {
 
-	private Logger logger = Logger.getLogger(AbstractDAOImpl.class);
+	private Logger					logger	= Logger.getLogger(AbstractDAOImpl.class);
 	// java:global._auto_generated_ear_.sprSecurity.TempTableEJBImpl
 	@EJB(mappedName = "TempTableEJB#com.sprSecurity.ejb.TempTableEJB")
-	private TempTableEJB tableEJB;
+	private TempTableEJB			tableEJB;
 
 	@PersistenceContext
-	private transient EntityManager em;
+	private transient EntityManager	em;
 
 	public abstract TransFormer getTransFormer();
 
 	public abstract Repository getRepository();
 
-	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public DTO createEntity(DTO dto) {
 		if (!validate(dto))
@@ -50,16 +47,9 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		return getTransFormer().transfromToDTO(eb);
 	}
 
-	@Transactional(propagation = Propagation.REQUIRES_NEW)
 	@Override
 	public DTO updateEntity(DTO dto) {
-		if (!validate(dto))
-			return null;
-		logger.info("Update Entity Start");
-		Entity eb = getTransFormer().transfromToEntity(dto);
-		// eb = em.merge(eb);
-		eb = getRepository().save(eb);
-		return getTransFormer().transfromToDTO(eb);
+		return createEntity(dto);
 	}
 
 	@Override
@@ -123,7 +113,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 	private Entity findEntityById(Entity entity) {
 
 		logger.info("Find  Entity if exist");
-		if (entity.getPK() != null ) {
+		if (entity.getPK() != null) {
 			Entity eb = (Entity) getRepository().findEntityById(entity.getPK());
 			logger.info(" Entity Loaded Successfully with ID" + eb);
 			return eb;

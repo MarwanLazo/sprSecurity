@@ -17,8 +17,12 @@ app.controller('customersCtrl', function($scope, $http) {
 	};
 
 	$scope.submit = function() {
-
-		$scope.tempTable.tempRef = JSON.parse($scope.selectedItem);
+		if ($scope.selectedPerson != null) {
+			$scope.tempTable.person = JSON.parse($scope.selectedPerson);
+		}
+		if ($scope.selectedItem != null) {
+			$scope.tempTable.tempRef = JSON.parse($scope.selectedItem);
+		}
 		var rs = JSON.stringify($scope.tempTable);
 		console.log(rs);
 		$http.post("http://localhost:7007/sprSecurity/rest/addtemptable/", rs)
@@ -49,12 +53,9 @@ app.controller('customersCtrl', function($scope, $http) {
 		console.log(item);
 		$.ajax({
 			type : 'DELETE',
-			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'
-					+ item,
+			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'	+ item,
 			success : function(data, textStatus, jqXHR) {
-				console.log('------------------------------------');
 				console.log(JSON.parse($scope.selectedItem).name);
-				console.log('------------------------------------');
 				$scope.click();
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
@@ -62,6 +63,13 @@ app.controller('customersCtrl', function($scope, $http) {
 			}
 		});
 	}
+
+	$http.get("http://localhost:7007/sprSecurity/rest/person").then(
+			function(response) {
+				console.log("data");
+				$scope.person = response.data;
+				console.log($scope.person);
+			});
 });
 
 app.controller("calc", function($scope) {

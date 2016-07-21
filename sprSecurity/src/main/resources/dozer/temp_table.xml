@@ -2,7 +2,7 @@
 <mappings xmlns="http://dozer.sourceforge.net" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://dozer.sourceforge.net http://dozer.sourceforge.net/schema/beanmapping.xsd">
 
-	<mapping>
+	<mapping map-null="false">
 		<class-a>com.sprSecurity.spring.hibernate.entity.TempTableEB</class-a>
 		<class-b>com.sprSecurity.spring.dto.TempTableDTO</class-b>
 		<field>
@@ -17,5 +17,9 @@
 			<a>person</a>
 			<b>person</b>
 		</field>
+		<field-exclude>
+			<a>createTime</a>
+			<b>createTime</b>
+		</field-exclude>
 	</mapping>
 </mappings>

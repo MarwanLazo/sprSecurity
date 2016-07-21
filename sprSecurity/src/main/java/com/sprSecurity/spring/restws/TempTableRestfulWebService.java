@@ -37,7 +37,6 @@ public class TempTableRestfulWebService {
 	@RequestMapping(value = "/addtemptable/", method = RequestMethod.POST)
 	public ResponseEntity<Void> createTempTable(@RequestBody TempTableDTO tempTableDTO, UriComponentsBuilder ucBuilder) {
 		logger.info("Creating Temp Table " + tempTableDTO.getTempTableName());
-		tempTableDTO.setCreateTime(new Date());
 		temp.createEntity(tempTableDTO);
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(ucBuilder.path("/tempTable/{tempName}").buildAndExpand(tempTableDTO.getTempTableName()).toUri());
