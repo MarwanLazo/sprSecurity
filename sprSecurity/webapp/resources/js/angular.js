@@ -56,7 +56,7 @@ app.controller('customersCtrl', function($scope, $http) {
 			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'	+ item,
 			success : function(data, textStatus, jqXHR) {
 				console.log(JSON.parse($scope.selectedItem).name);
-				$scope.click();
+				load_all_temptebles();
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
 				alert('deleteWine error');
