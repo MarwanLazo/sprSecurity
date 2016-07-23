@@ -10,11 +10,15 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	
 <script type="text/javascript" src="resources/js/angular.js"></script>
+<script type="text/javascript" src="resources/js/mainJS.js"></script>
 
 <link rel="stylesheet"
 	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
 
+ <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <style>
 input.ng-invalid {
 	border: 1px solid red;
@@ -56,27 +60,46 @@ button {
 
 					<div class="form-group">
 						<label for="temp_ref">Temp Ref</label> 
-						<select ng-model="selectedItem" id="temp_ref" >
+						<select ng-model="tempTable.tempRef" id="temp_ref" >
 							<option value="volvo">Volvo</option>
 							<option ng-repeat="item in names" value="{{item}}">{{item.tempTableName}}</option>
 						</select> 
 					</div>
 					
 					<div class="form-group">
+						<label for="temp_ref_Status">Temp Status</label> 
+						<select ng-model="tempTable.status" id="temp_ref_Status" >
+							<option value="volvo">Volvo</option>
+							<option ng-repeat="item in names" value="{{item.status}}">{{item.status}}</option>
+						</select> 
+					</div>
+					
+					<div class="form-group">
 						<label for="selectedPerson">Person</label> 
-						<select ng-model="selectedPerson" id="selectedPerson" >
+						<select ng-model="tempTable.person" id="selectedPerson" >
 							<option value="volvo">Volvo</option>
 							<option ng-repeat="item in person" value="{{item}}">{{item.id.name + ', '+ item.id.fullName}}</option>
 						</select> 
 					</div>
 	
+				<div class="form-group">
+					 <label for="date">Create date</label> 
+					 <input ng-model="tempTablex.createTime"  type="text" id="datepicker" /> 
+		 		</div>
+	
+	
+	
+	
 	
 
 					<button  class="btn btn-default" type="button" ng-click="submit()">submit</button>
 					<div class="row">
-						<p>selected item is : {{selectedItem}}</p>
-						<p>{{selectedPerson}}</p>
-						<p>Full Name: {{tempTable.tempTableName + " - " +	tempTable.tempEmail}}</p>
+						<p>{{tempTable.tempRef}}</p>
+						<p>{{tempTable.person}}</p>
+						<p>{{tempTable.status}}</p>
+						<p>{{tempTable.tempTableName }}</p>
+						<p>{{tempTable.tempEmail}}</p>
+						
 					</div>
 				</form>
 				<br> <br> 
@@ -92,13 +115,16 @@ button {
 						<th>Temp Email</th>
 						<th>Temp REF</th>
 						<th>Person Full Name</th>
+						<th>Temp Staus</th>
+						<th>create time</th>
 					</tr>
 					<tr ng-repeat="x in names">
-						<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{
-								x.tempTableName }} </a></td>
+						<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName }} </a></td>
 						<td>{{ x.tempEmail }}</td>
 						<td>{{ x.tempRef.tempTableName }}</td>
 						<td>{{ x.person.id.fullName }}</td>
+						<td>{{ x.status }}</td>
+						<td>{{x.createTime}}</td>
 					</tr>
 				</table>
 

@@ -17,9 +17,9 @@
 			<a>person</a>
 			<b>person</b>
 		</field>
-		<field-exclude>
+		<!-- <field-exclude >
 			<a>createTime</a>
 			<b>createTime</b>
-		</field-exclude>
+		</field-exclude> -->
 	</mapping>
 </mappings>

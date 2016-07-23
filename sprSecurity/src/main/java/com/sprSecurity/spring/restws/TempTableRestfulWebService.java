@@ -1,6 +1,5 @@
 package com.sprSecurity.spring.restws;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.inject.Inject;

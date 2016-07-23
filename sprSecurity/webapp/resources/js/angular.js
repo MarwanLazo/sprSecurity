@@ -17,12 +17,14 @@ app.controller('customersCtrl', function($scope, $http) {
 	};
 
 	$scope.submit = function() {
-		if ($scope.selectedPerson != null) {
-			$scope.tempTable.person = JSON.parse($scope.selectedPerson);
+		console.log($scope.tempTable);
+		if ($scope.tempTable.person != null) {
+			$scope.tempTable.person = JSON.parse($scope.tempTable.person);
 		}
-		if ($scope.selectedItem != null) {
-			$scope.tempTable.tempRef = JSON.parse($scope.selectedItem);
+		if ($scope.tempTable.tempRef != null) {
+			$scope.tempTable.tempRef = JSON.parse($scope.tempTable.tempRef);
 		}
+		console.log($scope.tempTable);
 		var rs = JSON.stringify($scope.tempTable);
 		console.log(rs);
 		$http.post("http://localhost:7007/sprSecurity/rest/addtemptable/", rs)
@@ -55,7 +57,6 @@ app.controller('customersCtrl', function($scope, $http) {
 			type : 'DELETE',
 			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'	+ item,
 			success : function(data, textStatus, jqXHR) {
-				console.log(JSON.parse($scope.selectedItem).name);
 				load_all_temptebles();
 			},
 			error : function(jqXHR, textStatus, errorThrown) {
