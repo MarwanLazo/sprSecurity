@@ -111,8 +111,8 @@ public class TempTableDTO extends AbstractDTO<String> {
 		this.tempTableName = tempTableName;
 	}
 	
-	@JsonIgnore
-	@JsonProperty(value = "createTime")
+//	@JsonIgnore
+//	@JsonProperty(value = "createTime")
 	public Date getCreateTime() {
 		return createTime;
 	}

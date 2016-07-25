@@ -10,15 +10,17 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 <script
 	src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-	
+
 <script type="text/javascript" src="resources/js/angular.js"></script>
 <script type="text/javascript" src="resources/js/mainJS.js"></script>
 
 <link rel="stylesheet"
 	href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.2/css/bootstrap-combined.min.css" />
 
- <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<link rel="stylesheet"
+	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
 <style>
 input.ng-invalid {
 	border: 1px solid red;
@@ -40,111 +42,131 @@ button {
 	<div class="container-fluid">
 		<div class="row-fluid">
 
-			<w3-test-directive></w3-test-directive>
-
-			<div ng-controller="customersCtrl">
-
-				<form name="formTemp" class="">
-
-					<div class="form-group">
-						<label for="temp_Name">Temp Name</label> 
-						<input type="text" ng-model="tempTable.tempTableName"	required  class="form-control" id="temp_Name" name="temp_Name"	placeholder="Temp Name">
-						<span ng-show="formTemp.temp_Name.$error.temp_Name">Not a valid e-mail address</span>
-					</div>
-
-					<div class="form-group">
-						<label for="Temp_Email">temp Email</label> 
-						<input name="email" type="email" ng-model="tempTable.tempEmail"	required  class="form-control" id="Temp_Email"	placeholder="Email">
-						<span ng-show="formTemp.email.$error.email">Not a valid e-mail address</span>
-					</div>
-
-					<div class="form-group">
-						<label for="temp_ref">Temp Ref</label> 
-						<select ng-model="tempTable.tempRef" id="temp_ref" >
-							<option value="volvo">Volvo</option>
-							<option ng-repeat="item in names" value="{{item}}">{{item.tempTableName}}</option>
-						</select> 
-					</div>
+			<div class="col-md-6">
+				<br /> <br />
+				<div ng-controller="DoubleController">
+					Two times <input ng-model="num" ng-init="num=5" type="number">
+					equals {{ double(num) }}
+					<p><input ng-model="name" style="border: 1px solid {{css_class}}" type="text"></p>
 					
-					<div class="form-group">
-						<label for="temp_ref_Status">Temp Status</label> 
-						<select ng-model="tempTable.status" id="temp_ref_Status" >
-							<option value="volvo">Volvo</option>
-							<option ng-repeat="item in names" value="{{item.status}}">{{item.status}}</option>
-						</select> 
-					</div>
-					
-					<div class="form-group">
-						<label for="selectedPerson">Person</label> 
-						<select ng-model="tempTable.person" id="selectedPerson" >
-							<option value="volvo">Volvo</option>
-							<option ng-repeat="item in person" value="{{item}}">{{item.id.name + ', '+ item.id.fullName}}</option>
-						</select> 
-					</div>
-	
-				<div class="form-group">
-					 <label for="date">Create date</label> 
-					 <input ng-model="tempTablex.createTime"  type="text" id="datepicker" /> 
-		 		</div>
-	
-	
-	
-	
-	
-
-					<button  class="btn btn-default" type="button" ng-click="submit()">submit</button>
-					<div class="row">
-						<p>{{tempTable.tempRef}}</p>
-						<p>{{tempTable.person}}</p>
-						<p>{{tempTable.status}}</p>
-						<p>{{tempTable.tempTableName }}</p>
-						<p>{{tempTable.tempEmail}}</p>
-						
-					</div>
-				</form>
-				<br> <br> 
-				
-				
-				
+				<button type="button" ng-click="callNotify()">click</button>
+				<input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+				</div>
 
 
-				<button type="button" ng-click="click()">click</button>
-				<table cellspacing="20" class="table blank_row">
-					<tr>
-						<th>Temp Name</th>
-						<th>Temp Email</th>
-						<th>Temp REF</th>
-						<th>Person Full Name</th>
-						<th>Temp Staus</th>
-						<th>create time</th>
-					</tr>
-					<tr ng-repeat="x in names">
-						<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName }} </a></td>
-						<td>{{ x.tempEmail }}</td>
-						<td>{{ x.tempRef.tempTableName }}</td>
-						<td>{{ x.person.id.fullName }}</td>
-						<td>{{ x.status }}</td>
-						<td>{{x.createTime}}</td>
-					</tr>
-				</table>
+				<p>--------------------------------------</p>
+				<w3-test-directive></w3-test-directive>
 
+				<div ng-controller="customersCtrl">
+
+					<form name="formTemp" class="">
+
+						<div class="form-group">
+							<label for="temp_Name">Temp Name</label> <input type="text"
+								ng-model="tempTable.tempTableName" required class="form-control"
+								id="temp_Name" name="temp_Name" placeholder="Temp Name">
+							<span ng-show="formTemp.temp_Name.$error.temp_Name">Not a
+								valid e-mail address</span>
+						</div>
+
+						<div class="form-group">
+							<label for="Temp_Email">temp Email</label> <input name="email"
+								type="email" ng-model="tempTable.tempEmail" required
+								class="form-control" id="Temp_Email" placeholder="Email">
+							<span ng-show="formTemp.email.$error.email">Not a valid
+								e-mail address</span>
+						</div>
+
+						<div class="form-group">
+							<label for="temp_ref">Temp Ref</label> <select
+								ng-model="tempTable.tempRef" id="temp_ref">
+								<option value="volvo">Volvo</option>
+								<option ng-repeat="item in names" value="{{item}}">{{item.tempTableName}}</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="temp_ref_Status">Temp Status</label> <select
+								ng-model="tempTable.status" id="temp_ref_Status">
+								<option value="volvo">Volvo</option>
+								<option ng-repeat="item in names" value="{{item.status}}">{{item.status}}</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="selectedPerson">Person</label> <select
+								ng-model="tempTable.person" id="selectedPerson">
+								<option value="volvo">Volvo</option>
+								<option ng-repeat="item in person" value="{{item}}">{{item.id.name
+									+ ', '+ item.id.fullName}}</option>
+							</select>
+						</div>
+
+						<div class="form-group">
+							<label for="date">Create date</label> <input
+								ng-model="tempTablex.createTime" type="text" id="datepicker" />
+						</div>
+
+
+
+
+
+
+						<button class="btn btn-default" type="button" ng-click="submit()">submit</button>
+						<div class="row">
+							<p>{{tempTable.tempRef}}</p>
+							<p>{{tempTable.person}}</p>
+							<p>{{tempTable.status}}</p>
+							<p>{{tempTable.tempTableName }}</p>
+							<p>{{tempTable.tempEmail}}</p>
+
+						</div>
+					</form>
+					<br> <br>
+
+
+
+
+
+					<button type="button" ng-click="click()">click</button>
+					<table cellspacing="20" class="table blank_row">
+						<tr>
+							<th>Temp Name</th>
+							<th>Temp Email</th>
+							<th>Temp REF</th>
+							<th>Person Full Name</th>
+							<th>Temp Staus</th>
+							<th>create time</th>
+						</tr>
+						<tr ng-repeat="x in names">
+							<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName
+									}} </a></td>
+							<td>{{ x.tempEmail }}</td>
+							<td>{{ x.tempRef.tempTableName }}</td>
+							<td>{{ x.person.id.fullName }}</td>
+							<td>{{ x.status }}</td>
+							<td>{{date_format(x.createTime)}}</td>
+						</tr>
+					</table>
+
+				</div>
 			</div>
+			<div class="col-md-6">
+				<form name="myForm">
+					Email: <input type="email" name="myAddress" ng-model="error">
+					<span ng-show="myForm.myAddress.$error.email">Not a valid
+						e-mail address</span>
+				</form>
 
-			<form name="myForm">
-				Email: <input type="email" name="myAddress" ng-model="error">
-				<span ng-show="myForm.myAddress.$error.email">Not a valid
-					e-mail address</span>
-			</form>
-
-			<form name="myForm1" ng-init="myText = 'post@myweb.com'">
-				Email: <input type="email" name="myAddress" ng-model="myText"
-					required> <span ng-show="myForm1.myAddress.$error.email">Not
-					a valid e-mail address</span>
-				<h1>Status</h1>
-				{{myForm1.myAddress.$valid}}
-				{{myForm1.myAddress.$dirty}}
-				{{myForm1.myAddress.$touched}}
-			</form>
+				<form name="myForm1" ng-init="myText = 'post@myweb.com'">
+					Email: <input type="email" name="myAddress" ng-model="myText"
+						required> <span ng-show="myForm1.myAddress.$error.email">Not
+						a valid e-mail address</span>
+					<h1>Status</h1>
+					{{myForm1.myAddress.$valid}} {{myForm1.myAddress.$dirty}}
+					{{myForm1.myAddress.$touched}}
+				</form>
+			</div>
 		</div>
 	</div>
 </body>

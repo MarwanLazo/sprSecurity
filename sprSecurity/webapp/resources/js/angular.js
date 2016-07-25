@@ -27,6 +27,7 @@ app.controller('customersCtrl', function($scope, $http) {
 		console.log($scope.tempTable);
 		var rs = JSON.stringify($scope.tempTable);
 		console.log(rs);
+		// if()
 		$http.post("http://localhost:7007/sprSecurity/rest/addtemptable/", rs)
 				.success(function(rs, status, headers) {
 					$scope.PostDataResponse = rs;
@@ -39,9 +40,7 @@ app.controller('customersCtrl', function($scope, $http) {
 									+ "<br />headers: " + header;
 							console.log($scope.ResponseDetails);
 						});
-
 	}
-
 	function load_all_temptebles() {
 		$http.get("http://localhost:7007/sprSecurity/rest/temptable").then(
 				function(response) {
@@ -55,7 +54,8 @@ app.controller('customersCtrl', function($scope, $http) {
 		console.log(item);
 		$.ajax({
 			type : 'DELETE',
-			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'	+ item,
+			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'
+					+ item,
 			success : function(data, textStatus, jqXHR) {
 				load_all_temptebles();
 			},
@@ -71,15 +71,47 @@ app.controller('customersCtrl', function($scope, $http) {
 				$scope.person = response.data;
 				console.log($scope.person);
 			});
-});
 
-app.controller("calc", function($scope) {
-	$scope.quantity = 0;
-	$scope.price = 0;
-	$scope.click = function() {
-		$scope.Total_in_dollar = $scope.quantity * $scope.price;
-
+	$scope.date_format = function date_format(milli_sec) {
+		if (milli_sec == null) {
+			return "";
+		}
+		var d = new Date(milli_sec);
+		var datestring = d.getDate() + "/" + (d.getMonth() + 1) + "/"
+				+ d.getFullYear();
+		return datestring;
 	};
 });
 
 // ------------------------------
+
+app.controller(
+		'DoubleController',
+		[
+				'$scope',
+				'notify',
+				function($scope, notify) {
+					$scope.double = function(value) {
+						return value * 2;
+					};
+					$scope.date_format = function date_format(milli_sec) {
+						var d = new Date(milli_sec);
+						var datestring = d.getDate() + "/" + (d.getMonth() + 1)
+								+ "/" + d.getFullYear();
+						return datestring;
+					};
+
+					$scope.callNotify = function() {
+						$scope.css_class = notify($scope.name);
+//						alert($scope.css_class);
+					}
+				} ]).factory('notify', [ '$window', function(win) {
+	return function(msg) {
+		if (msg == null || msg.length < 3) {
+			return "red";
+		}
+		return "";
+	};
+} ]);
+
+// ================
