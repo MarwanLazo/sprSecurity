@@ -103,7 +103,6 @@ app.controller(
 
 					$scope.callNotify = function() {
 						$scope.css_class = notify($scope.name);
-//						alert($scope.css_class);
 					}
 				} ]).factory('notify', [ '$window', function(win) {
 	return function(msg) {

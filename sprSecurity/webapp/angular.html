@@ -43,14 +43,21 @@ button {
 		<div class="row-fluid">
 
 			<div class="col-md-6">
-				<br /> <br />
+				<br />
+
+				
+				 <br />
 				<div ng-controller="DoubleController">
 					Two times <input ng-model="num" ng-init="num=5" type="number">
 					equals {{ double(num) }}
-					<p><input ng-model="name" style="border: 1px solid {{css_class}}" type="text"></p>
+					<p>
+						<input ng-model="name" style="border: 1px solid {{css_class}}" type="text">
+						<p ng-show="sho"> ERROR: name must not be empty</p>
 					
-				<button type="button" ng-click="callNotify()">click</button>
-				<input style="background-color:{{myCol}}" ng-model="myCol" value="{{myCol}}">
+					</p>
+					
+				<button type="button" ng-click="callNotify();sho=(name == null || name.length< 4)">click</button>
+			
 				</div>
 
 
@@ -154,8 +161,7 @@ button {
 			<div class="col-md-6">
 				<form name="myForm">
 					Email: <input type="email" name="myAddress" ng-model="error">
-					<span ng-show="myForm.myAddress.$error.email">Not a valid
-						e-mail address</span>
+					<span ng-show="myForm.myAddress.$error.email">Not a valid e-mail address</span>
 				</form>
 
 				<form name="myForm1" ng-init="myText = 'post@myweb.com'">
