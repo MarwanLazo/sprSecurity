@@ -34,12 +34,11 @@ public class HelloServlet extends HttpServlet {
 
 	@Inject
 	private PersonService		personService;
-	 @Inject
-	 private EmployeeReport report;
-	 @Inject
-	 private JMSMessageSender	messageSender;
+	@Inject
+	private EmployeeReport		report;
+	@Inject
+	private JMSMessageSender	messageSender;
 
-	
 	private Logger				logger				= Logger.getLogger(HelloServlet.class);
 
 	public HelloServlet() {
@@ -57,12 +56,11 @@ public class HelloServlet extends HttpServlet {
 	protected void service(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		PrintWriter out = response.getWriter();
 		try {
-			
-			
+
 			PersonDTO p = new PersonDTO();
 			p.setId(new PersonPKDTO("Ali_2", "Ali Sami_2"));
 			p.setJob("Eng.");
-			p.setAge(32);		
+			p.setAge(32);
 			out.println(personService.updateEntity(p));
 			out.println("================================");
 			TempTableDTO dto = new TempTableDTO();

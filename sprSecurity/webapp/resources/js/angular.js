@@ -85,12 +85,7 @@ app.controller('customersCtrl', function($scope, $http) {
 
 // ------------------------------
 
-app.controller(
-		'DoubleController',
-		[
-				'$scope',
-				'notify',
-				function($scope, notify) {
+app.controller('DoubleController',['$scope','notify',function($scope, notify) {
 					$scope.double = function(value) {
 						return value * 2;
 					};
