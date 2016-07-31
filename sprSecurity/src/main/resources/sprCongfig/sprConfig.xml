@@ -50,13 +50,14 @@
 	<context:component-scan base-package="com.sprSecurity.spring.controller" />
 	<context:component-scan base-package="com.sprSecurity.spring.dozer" />
 	<context:component-scan base-package="com.sprSecurity.spring.jasper.dynamic" />
+	<context:component-scan base-package="com.sprSecurity.spring.jasper.template" />
 	<context:component-scan base-package="com.sprSecurity.spring.jms" />
 	<context:component-scan base-package="com.sprSecurity.spring.restws" />
 
 	<bean class="com.sprSecurity.spring.logging.LoggingAspect" id="logg" />
-	
-	<bean class="com.sprSecurity.spring.soapws.HelloSoap" id="WSSOAP" >
-	    <!-- <property name="service"  ref="tempTableService"/> -->
+
+	<bean class="com.sprSecurity.spring.soapws.HelloSoap" id="WSSOAP">
+		<!-- <property name="service" ref="tempTableService"/> -->
 	</bean>
 
 	<import resource="spring_hibernate.xml" />
@@ -70,6 +71,6 @@
 	<import resource="classpath:batch/spring_batch.xml" />
 
 	<mvc:resources mapping="resources/template/**" location="/resources/*/**" />
-	
+
 
 </beans>

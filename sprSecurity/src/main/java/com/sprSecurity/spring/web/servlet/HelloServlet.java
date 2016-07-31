@@ -22,6 +22,7 @@ import com.sprSecurity.spring.dto.TempTableDTO;
 import com.sprSecurity.spring.enums.Status;
 import com.sprSecurity.spring.jasper.ReportType;
 import com.sprSecurity.spring.jasper.dynamic.EmployeeReport;
+import com.sprSecurity.spring.jasper.template.EmployeeReporet;
 import com.sprSecurity.spring.jms.JMSMessageObject;
 import com.sprSecurity.spring.jms.JMSMessageSender;
 import com.sprSecurity.spring.jms.QueueEnum;
@@ -36,6 +37,12 @@ public class HelloServlet extends HttpServlet {
 	private PersonService		personService;
 	@Inject
 	private EmployeeReport		report;
+	
+	@Inject
+	private EmployeeReporet		employeeReporet;
+	
+	
+	
 	@Inject
 	private JMSMessageSender	messageSender;
 
@@ -76,6 +83,7 @@ public class HelloServlet extends HttpServlet {
 			logger.info("creation Done !! successfully	");
 			out.println(dto);
 			report.gernerateReport(null, ReportType.CSV);
+			employeeReporet.gernerateReport(null, ReportType.PDF);
 			messageSender.sendMessage(new JMSMessageObject(), QueueEnum.QUEUE_TEST);
 			out.println(service.findAll());
 		} finally {

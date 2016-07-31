@@ -23,13 +23,22 @@ import ar.com.fdvs.dj.domain.entities.columns.AbstractColumn;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperPrint;
 
+/**
+ * @author Marwan
+ *
+ */
 @Service("employeeReport")
 public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 
+	private static final long serialVersionUID = 1L;
+
 	@Override
-	public void gernerateReport(List<Employee> reports,ReportType type) {
+	public void gernerateReport(Object report, ReportType type) {
 		System.out.print("Test App");
 		System.out.print("\nTest App");
+		
+		@SuppressWarnings("unchecked")
+		List<Employee> reports=(List<Employee>)report;
 		if (reports == null || reports.isEmpty()) {
 
 			reports = new ArrayList<Employee>();
@@ -41,13 +50,8 @@ public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 			try {
 				JasperPrint jp = getReport(reports);
 				// JasperViewer jasperViewer = new JasperViewer(jp);
-				
-				ReportExporter.export(ReportType.PDF,jp);
-				ReportExporter.export(ReportType.XLS,jp);
-				ReportExporter.export(ReportType.XLSX,jp);
-				ReportExporter.export(ReportType.XML,jp);
-				ReportExporter.export(ReportType.HTML,jp);
-				
+
+				ReportExporter.export(type, jp);
 
 				// jasperViewer.setVisible(true);
 			} catch (ColumnBuilderException e) {

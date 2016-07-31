@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="Employees" pageWidth="700" pageHeight="842" columnWidth="660" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="ef43c635-a8f3-43f5-8e4a-bb3a25a2e602">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<subDataset name="dataset1" uuid="65b2769c-fa1b-4695-a707-fc85db9e8b6a">
+		<field name="empNo" class="java.lang.Integer"/>
+		<field name="name" class="java.lang.String"/>
+		<field name="salary" class="java.lang.Integer"/>
+		<field name="commission" class="java.lang.Float"/>
+	</subDataset>
+	<parameter name="employee_list" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="subTilte" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="44" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="ab4117c0-8f41-468f-907d-fe832d2e22ea" x="156" y="2" width="228" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Employee Report]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="35" splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="61" splitType="Stretch">
+			<staticText>
+				<reportElement uuid="fa60a963-1728-4e63-a11a-d2824e20bb2a" x="5" y="41" width="89" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Emp. No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="c45f3976-48c6-4c03-a1bc-fb0d64e751b6" x="144" y="41" width="89" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Emp.Name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="eaccf915-a4b3-4472-a68d-c789fc569ec3" x="375" y="41" width="89" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Salary]]></text>
+			</staticText>
+			<staticText>
+				<reportElement uuid="b6eb51ec-48d1-4222-adce-b89462cb8cdb" x="537" y="41" width="89" height="20"/>
+				<textElement verticalAlignment="Middle">
+					<font size="15"/>
+				</textElement>
+				<text><![CDATA[Commission]]></text>
+			</staticText>
+			<textField>
+				<reportElement uuid="dd12371f-1f9b-4818-9653-7b8834162e48" x="12" y="0" width="278" height="39"/>
+				<textElement/>
+				<textFieldExpression><![CDATA[$F{subTilte}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="64" splitType="Stretch">
+			<line>
+				<reportElement uuid="20e37366-5183-4f98-abd8-086bd122bce4" x="0" y="1" width="661" height="1"/>
+			</line>
+			<line>
+				<reportElement uuid="b24c6c09-177b-4880-9454-e2248d1797eb" x="1" y="-22" width="661" height="1"/>
+			</line>
+			<componentElement>
+				<reportElement uuid="57d598ba-8c91-4c92-9bd8-3e67b829bf58" x="5" y="2" width="655" height="31"/>
+				<jr:list xmlns:jr="http://jasperreports.sourceforge.net/jasperreports/components" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports/components http://jasperreports.sourceforge.net/xsd/components.xsd" printOrder="Vertical">
+					<datasetRun subDataset="dataset1" uuid="af5c1237-5d16-4a0d-89f1-a65c678e5820">
+						<dataSourceExpression><![CDATA[$P{employee_list}]]></dataSourceExpression>
+					</datasetRun>
+					<jr:listContents height="31" width="655">
+						<textField>
+							<reportElement uuid="c05be95a-4d83-4695-a682-9b8127e9ee93" x="7" y="2" width="100" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{empNo}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="24d5a74b-2fd0-445a-aa8a-26dd5969d40f" x="128" y="2" width="190" height="20"/>
+							<textElement/>
+							<textFieldExpression><![CDATA[$F{name}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="71a1c7f0-cb41-4e2a-afc0-f1092907901d" x="345" y="2" width="100" height="20"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$F{salary}]]></textFieldExpression>
+						</textField>
+						<textField>
+							<reportElement uuid="07b00ad5-5a47-4862-a93c-75f967bfe3a3" x="521" y="2" width="100" height="20"/>
+							<textElement textAlignment="Right"/>
+							<textFieldExpression><![CDATA[$F{commission}]]></textFieldExpression>
+						</textField>
+					</jr:listContents>
+				</jr:list>
+			</componentElement>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

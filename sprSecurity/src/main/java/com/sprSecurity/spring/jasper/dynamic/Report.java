@@ -1,10 +1,10 @@
 package com.sprSecurity.spring.jasper.dynamic;
 
-import java.util.List;
+import java.io.Serializable;
 
 import com.sprSecurity.spring.jasper.ReportType;
 import com.sprSecurity.spring.jasper.dto.ReportDTO;
 
-public interface Report<DTO extends ReportDTO> {
-	void gernerateReport(List<DTO> reports, ReportType type);
+public interface Report<DTO extends ReportDTO> extends Serializable {
+	void gernerateReport(Object reports, ReportType type);
 }

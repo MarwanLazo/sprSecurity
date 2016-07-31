@@ -208,12 +208,16 @@
 			<version>2.1</version>
 		</dependency>
 
- 		<!-- https://mvnrepository.com/artifact/de.beyondjava/angularFaces-core
+		<!-- https://mvnrepository.com/artifact/de.beyondjava/angularFaces-core 
+			<dependency> <groupId>de.beyondjava</groupId> <artifactId>angularFaces-core</artifactId> 
+			<version>2.1.11</version> </dependency> -->
+
+		<!-- https://mvnrepository.com/artifact/jfree/jfreechart -->
 		<dependency>
-			<groupId>de.beyondjava</groupId>
-			<artifactId>angularFaces-core</artifactId>
-			<version>2.1.11</version>
-		</dependency> -->
+			<groupId>jfree</groupId>
+			<artifactId>jfreechart</artifactId>
+			<version>1.0.13</version>
+		</dependency>
 
 
 	</dependencies>
