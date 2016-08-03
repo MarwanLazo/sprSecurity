@@ -38,7 +38,7 @@ public abstract class AbstractTransformerImpl<Source extends AbstractDTO<?>, Tar
 
 		dozerBeanMapper.setMappingFiles(mappingFileUrls);
 		Map<String, CustomConverter> customConvertersWithId = new HashMap<String, CustomConverter>();
-		customConvertersWithId.put(TMP_TABLE_CONVERTER, new DozerCustomConverter<DAO, Source>(getDAO(),dozerBeanMapper));
+		customConvertersWithId.put(TMP_TABLE_CONVERTER, new DozerCustomConverter<DAO, Source>(getDAO(), dozerBeanMapper));
 		dozerBeanMapper.setCustomConvertersWithId(customConvertersWithId);
 
 	}
@@ -81,6 +81,12 @@ public abstract class AbstractTransformerImpl<Source extends AbstractDTO<?>, Tar
 
 	public DozerBeanMapper getDozerBeanMapper() {
 		return dozerBeanMapper;
+	}
+
+	@Override
+	public Target transfromToSameType(Target source, Target target) {
+		dozerBeanMapper.map(source, target);
+		return target;
 	}
 
 }

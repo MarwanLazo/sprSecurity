@@ -49,7 +49,15 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 
 	@Override
 	public DTO updateEntity(DTO dto) {
-		return createEntity(dto);
+		if (!validate(dto))
+			return null;
+		Entity eb = getTransFormer().transfromToEntity(dto);
+		Entity entity = getRepository().findEntityById((Serializable) getPkEB(eb.getPK()));
+
+		getTransFormer().transfromToSameType(eb, entity);
+		entity = getRepository().save(entity);
+		return getTransFormer().transfromToDTO(entity);
+
 	}
 
 	@Override

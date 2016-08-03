@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.EmbeddedId;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 
 import org.hibernate.envers.Audited;
 
@@ -28,8 +29,8 @@ public class PersonEB extends AbstractEntity<PersonPKEB> {
 	@Column(name = "job")
 	private String				job;
 
-//	@Version
-//	private Integer				version				= 0;
+	@Version
+	private Integer				version				= 0;
 
 	public PersonEB() {
 
@@ -111,13 +112,13 @@ public class PersonEB extends AbstractEntity<PersonPKEB> {
 		return PersonDTO.class;
 	}
 
-//	public Integer getVersion() {
-//		return version;
-//	}
-//
-//	public void setVersion(Integer version) {
-//		this.version = version;
-//	}
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
+	}
 
 	@Override
 	public Class<? extends AbstractEntity<? extends Serializable>> getEntityClass() {

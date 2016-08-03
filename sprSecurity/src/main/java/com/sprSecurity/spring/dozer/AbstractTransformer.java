@@ -12,6 +12,8 @@ public interface AbstractTransformer<Source extends AbstractDTO<?>, Target exten
 	Target transfromToEntity(Source source);
 
 	Source transfromToDTO(Target target);
+	
+	Target transfromToSameType(Target source ,Target target);
 
 	List<Source> transfromListToDTO(List<Target> targets);
 

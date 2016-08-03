@@ -13,7 +13,7 @@
 		<hibernate.search>5.0.0.Alpha1</hibernate.search>
 		<Spring.version>4.2.5.RELEASE</Spring.version>
 		<aspectj.version>1.8.9</aspectj.version><!-- 1.7.4 , 1.6.11 ,1.8.9 -->
-		<spring.data>1.10.1.RELEASE</spring.data>
+		<spring.data>1.10.2.RELEASE</spring.data>
 		<oval.latest>1.85</oval.latest>
 		<dozar.version>5.5.1</dozar.version>
 		<Spring.batch>3.0.7.RELEASE</Spring.batch>
