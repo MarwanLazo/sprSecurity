@@ -25,11 +25,11 @@ import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 import net.sf.jasperreports.export.SimpleXlsxReportConfiguration;
 
 public class ReportExporter {
-	private final static String PATH = "C:/Users/marwan/Desktop/testDR/sample_report";
+	private final static String PATH = "C:/Users/marwan/Desktop/testDR/";
 
-	public static void export(ReportType type, JasperPrint jasperPrint) throws JRException, IOException {
+	public static void export(ReportType type, JasperPrint jasperPrint, String fileName) throws JRException, IOException {
 
-		String filePath = PATH + type.getFormat();
+		String filePath = PATH + fileName + type.getFormat();
 
 		switch (type) {
 			case PDF:

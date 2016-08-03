@@ -41,29 +41,29 @@ public class EmployeeReporetImpl implements EmployeeReporet {
 	}
 
 	@Override
-	public void gernerateReport(Object obj, ReportType type) {
+	public void gernerateReport(EmployeeDTO obj, ReportType type) {
 		try {
-			EmployeeDTO dto = (EmployeeDTO) obj;
-			if (dto == null) {
-				dto = new EmployeeDTO();
+
+			if (obj == null) {
+				obj = new EmployeeDTO();
 				List<Employee> report = new ArrayList<Employee>();
-				report.add(new Employee(1, "Osama1", 3001, 12.51f));
+				report.add(new Employee(1, "Osama", 3001, 12.51f));
 				report.add(new Employee(2, "Rady", 3010, 12.52f));
 				report.add(new Employee(3, "Oraby", 3100, 12.53f));
 				report.add(new Employee(4, "Mostafa", 31000, 12.54f));
 
-				dto.setEmployeeList(report);
-				dto.setSubTilte("Commission received by Employee  This report was generated at " + new Date() + " This information is confidential ");
+				obj.setEmployeeList(report);
+				obj.setSubTilte("Commission received by Employee  This report was generated at " + new Date() + " This information is confidential ");
 			}
 
-			JRBeanArrayDataSource mainDataSource = new JRBeanArrayDataSource(new Object[] { dto }, false);
-			JRBeanCollectionDataSource subDataSource = new JRBeanCollectionDataSource(dto.getEmployeeList(), false);
+			JRBeanArrayDataSource mainDataSource = new JRBeanArrayDataSource(new Object[] { obj }, false);
+			JRBeanCollectionDataSource subDataSource = new JRBeanCollectionDataSource(obj.getEmployeeList(), false);
 
 			Map<String, Object> jasperParameter = new HashMap<String, Object>();
 			jasperParameter.put("employee_list", subDataSource);
 
 			JasperPrint jasperPrint = JasperFillManager.fillReport(employeeReport, jasperParameter, mainDataSource);
-			ReportExporter.export(type, jasperPrint);
+			ReportExporter.export(type, jasperPrint, "Template_");
 		} catch (JRException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

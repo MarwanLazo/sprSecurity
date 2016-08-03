@@ -33,15 +33,13 @@ public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 	private static final long serialVersionUID = 1L;
 
 	@Override
-	public void gernerateReport(Object report, ReportType type) {
+	public void gernerateReport(Employee report, ReportType type) {
 		System.out.print("Test App");
 		System.out.print("\nTest App");
-		
-		@SuppressWarnings("unchecked")
-		List<Employee> reports=(List<Employee>)report;
-		if (reports == null || reports.isEmpty()) {
 
-			reports = new ArrayList<Employee>();
+		if (report == null) {
+
+			List<Employee> reports = new ArrayList<Employee>();
 			reports.add(new Employee(1, "Osama1", 3001, 12.51f));
 			reports.add(new Employee(2, "Rady", 3010, 12.52f));
 			reports.add(new Employee(3, "Oraby", 3100, 12.53f));
@@ -51,7 +49,7 @@ public class EmployeeReportImpl extends ReportUtils implements EmployeeReport {
 				JasperPrint jp = getReport(reports);
 				// JasperViewer jasperViewer = new JasperViewer(jp);
 
-				ReportExporter.export(type, jp);
+				ReportExporter.export(type, jp, "Dynamic");
 
 				// jasperViewer.setVisible(true);
 			} catch (ColumnBuilderException e) {

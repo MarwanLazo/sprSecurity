@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.log4j.Logger;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.context.support.SpringBeanAutowiringSupport;
 
 import com.sprSecurity.spring.data.service.PersonService;
@@ -21,8 +22,7 @@ import com.sprSecurity.spring.dto.PersonPKDTO;
 import com.sprSecurity.spring.dto.TempTableDTO;
 import com.sprSecurity.spring.enums.Status;
 import com.sprSecurity.spring.jasper.ReportType;
-import com.sprSecurity.spring.jasper.dynamic.EmployeeReport;
-import com.sprSecurity.spring.jasper.template.EmployeeReporet;
+import com.sprSecurity.spring.jasper.dynamic.Report;
 import com.sprSecurity.spring.jms.JMSMessageObject;
 import com.sprSecurity.spring.jms.JMSMessageSender;
 import com.sprSecurity.spring.jms.QueueEnum;
@@ -35,14 +35,15 @@ public class HelloServlet extends HttpServlet {
 
 	@Inject
 	private PersonService		personService;
+
 	@Inject
-	private EmployeeReport		report;
-	
+	@Qualifier("employeeReport")
+	private Report<?>			report;
+
 	@Inject
-	private EmployeeReporet		employeeReporet;
-	
-	
-	
+	@Qualifier("EmployeeReporet")
+	private Report<?>			employeeReporet;
+
 	@Inject
 	private JMSMessageSender	messageSender;
 
@@ -82,7 +83,7 @@ public class HelloServlet extends HttpServlet {
 			dto = service.createEntity(dto);
 			logger.info("creation Done !! successfully	");
 			out.println(dto);
-			report.gernerateReport(null, ReportType.CSV);
+			report.gernerateReport(null, ReportType.PDF);
 			employeeReporet.gernerateReport(null, ReportType.PDF);
 			messageSender.sendMessage(new JMSMessageObject(), QueueEnum.QUEUE_TEST);
 			out.println(service.findAll());
