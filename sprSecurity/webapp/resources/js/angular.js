@@ -11,6 +11,7 @@ app
 // ====================================================
 app.controller('customersCtrl', function($scope, $http) {
 
+	$scope.host = "http://" + window.location.hostname;
 	$scope.tempTable = {};
 	$scope.click = function() {
 		load_all_temptebles();
@@ -31,7 +32,7 @@ app.controller('customersCtrl', function($scope, $http) {
 		}
 		var rs = JSON.stringify($scope.tempTable);
 
-		$http.post("http://localhost:7007/sprSecurity/rest/addtemptable/", rs)
+		$http.post($scope.host + ":7007/sprSecurity/rest/addtemptable/", rs)
 				.success(function(rs, status, headers) {
 					$scope.PostDataResponse = rs;
 					load_all_temptebles();
@@ -45,7 +46,7 @@ app.controller('customersCtrl', function($scope, $http) {
 						});
 	}
 	function load_all_temptebles() {
-		$http.get("http://localhost:7007/sprSecurity/rest/temptable").then(
+		$http.get($scope.host + ":7007/sprSecurity/rest/temptable").then(
 				function(response) {
 					$scope.names = response.data;
 				});
@@ -55,7 +56,7 @@ app.controller('customersCtrl', function($scope, $http) {
 		console.log(item);
 		$.ajax({
 			type : 'DELETE',
-			url : 'http://localhost:7007/sprSecurity/rest/deleteTemptable/'
+			url : $scope.host + ':7007/sprSecurity/rest/deleteTemptable/'
 					+ item,
 			success : function(data, textStatus, jqXHR) {
 				load_all_temptebles();
@@ -72,7 +73,7 @@ app.controller('customersCtrl', function($scope, $http) {
 		};
 	}
 
-	$http.get("http://localhost:7007/sprSecurity/rest/person").then(
+	$http.get($scope.host + ":7007/sprSecurity/rest/person").then(
 			function(response) {
 				console.log("data");
 				$scope.person = response.data;
