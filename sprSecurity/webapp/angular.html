@@ -111,7 +111,7 @@ button {
 
 						<div class="form-group">
 							<label for="date">Create date</label> <input
-								ng-model="tempTablex.createTime" type="text" id="datepicker" />
+								ng-model="tempTable.createTime" type="text" id="datepicker" />
 						</div>
 
 
@@ -146,8 +146,7 @@ button {
 							<th>create time</th>
 						</tr>
 						<tr ng-repeat="x in names">
-							<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName
-									}} </a></td>
+							<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName}} </a></td>
 							<td>{{ x.tempEmail }}</td>
 							<td>{{ x.tempRef.tempTableName }}</td>
 							<td>{{ x.person.id.fullName }}</td>

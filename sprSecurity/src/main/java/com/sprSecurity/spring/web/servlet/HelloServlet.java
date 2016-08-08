@@ -80,7 +80,7 @@ public class HelloServlet extends HttpServlet {
 			dto = service.updateEntity(dto);
 			dto.setTempRef(service.findEntityById("Adam_1"));
 			logger.info("sevlet method 'Sarvice' create or update  temp table");
-			dto = service.createEntity(dto);
+			dto = service.updateEntity(dto);
 			logger.info("creation Done !! successfully	");
 			out.println(dto);
 			report.gernerateReport(null, ReportType.PDF);

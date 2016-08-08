@@ -39,12 +39,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 
 	@Override
 	public DTO createEntity(DTO dto) {
-		if (!validate(dto))
-			return null;
-		logger.info("Create Entity Start");
-		Entity eb = getTransFormer().transfromToEntity(dto);
-		eb = getRepository().save(eb);
-		return getTransFormer().transfromToDTO(eb);
+		return updateEntity(dto);
 	}
 
 	@Override
@@ -53,8 +48,11 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 			return null;
 		Entity eb = getTransFormer().transfromToEntity(dto);
 		Entity entity = getRepository().findEntityById((Serializable) getPkEB(eb.getPK()));
-
-		getTransFormer().transfromToSameType(eb, entity);
+		if (entity == null) {
+			entity = eb;
+		} else {
+			getTransFormer().transfromToSameType(eb, entity);
+		}
 		entity = getRepository().save(entity);
 		return getTransFormer().transfromToDTO(entity);
 
@@ -66,7 +64,8 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 			return false;
 		logger.info("delete Entity Start");
 		Entity eb = getTransFormer().transfromToEntity(dto);
-		if (findEntityById(eb) != null) {
+		eb = findEntityById(eb);
+		if (eb != null) {
 			getRepository().delete(eb);
 			logger.info("delete Entity end successfully");
 			return true;

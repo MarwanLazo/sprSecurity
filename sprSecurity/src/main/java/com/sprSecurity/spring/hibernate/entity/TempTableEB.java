@@ -10,6 +10,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
 import org.hibernate.annotations.Type;
@@ -56,7 +57,6 @@ public class TempTableEB extends AbstractEntity<String> {
 	@Column(name = "create_time")
 	private Date				createTime;
 
-	
 	@JoinColumns({ @JoinColumn(name = "l_name", referencedColumnName = "l_name"), @JoinColumn(name = "f_name", referencedColumnName = "f_name") })
 	@ManyToOne
 	private PersonEB			person;
@@ -64,6 +64,9 @@ public class TempTableEB extends AbstractEntity<String> {
 	public TempTableEB() {
 		super();
 	}
+
+	@Version
+	private Integer version = 0;
 
 	public TempTableEB(String tempName, String tempEmail) {
 		this.id = tempName;
@@ -141,6 +144,14 @@ public class TempTableEB extends AbstractEntity<String> {
 	@Override
 	public Class<? extends AbstractEntity<? extends Serializable>> getEntityClass() {
 		return TempTableEB.class;
+	}
+
+	public Integer getVersion() {
+		return version;
+	}
+
+	public void setVersion(Integer version) {
+		this.version = version;
 	}
 
 }

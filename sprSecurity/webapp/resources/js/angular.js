@@ -24,15 +24,18 @@ app.controller('customersCtrl', function($scope, $http) {
 		if ($scope.tempTable.tempRef != null) {
 			$scope.tempTable.tempRef = JSON.parse($scope.tempTable.tempRef);
 		}
-		console.log($scope.tempTable);
+
+		if ($scope.tempTable.createTime != null) {
+			$scope.tempTable.createTime = new Date($scope.tempTable.createTime)
+					.getTime();
+		}
 		var rs = JSON.stringify($scope.tempTable);
-		console.log(rs);
-		// if()
+
 		$http.post("http://localhost:7007/sprSecurity/rest/addtemptable/", rs)
 				.success(function(rs, status, headers) {
 					$scope.PostDataResponse = rs;
-					console.log($scope.PostDataResponse);
 					load_all_temptebles();
+					$scope.tempTable = {};
 				}).error(
 						function(rs, status, header) {
 							$scope.ResponseDetails = "Data: " + rs
@@ -44,9 +47,7 @@ app.controller('customersCtrl', function($scope, $http) {
 	function load_all_temptebles() {
 		$http.get("http://localhost:7007/sprSecurity/rest/temptable").then(
 				function(response) {
-					console.log("data");
 					$scope.names = response.data;
-					console.log($scope.names);
 				});
 	}
 
@@ -63,6 +64,12 @@ app.controller('customersCtrl', function($scope, $http) {
 				alert('deleteWine error');
 			}
 		});
+
+		$scope.load_item = function(x) {
+			alert("rotfgwedrfg" + x);
+			console.log("clicked");
+			console.log(x);
+		};
 	}
 
 	$http.get("http://localhost:7007/sprSecurity/rest/person").then(
@@ -85,7 +92,12 @@ app.controller('customersCtrl', function($scope, $http) {
 
 // ------------------------------
 
-app.controller('DoubleController',['$scope','notify',function($scope, notify) {
+app.controller(
+		'DoubleController',
+		[
+				'$scope',
+				'notify',
+				function($scope, notify) {
 					$scope.double = function(value) {
 						return value * 2;
 					};
