@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import com.sprSecurity.spring.data.dao.PersonDAO;
 import com.sprSecurity.spring.dto.PersonDTO;
 import com.sprSecurity.spring.hibernate.entity.PersonEB;
+
 @Service("PersonTransformerImpl")
 public class PersonTransformerImpl extends AbstractTransformerImpl<PersonDTO, PersonEB, PersonDAO> implements PersonTransformer {
 

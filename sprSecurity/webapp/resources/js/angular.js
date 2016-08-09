@@ -66,13 +66,15 @@ app.controller('customersCtrl', function($scope, $http) {
 			}
 		});
 
-		$scope.load_item = function(x) {
-			alert("rotfgwedrfg" + x);
-			console.log("clicked");
-			console.log(x);
-		};
 	}
 
+
+	$scope.loadItem = function(x) {
+		$scope.tempTable=x;
+		$scope.tempTable.createTime=$scope.date_format($scope.tempTable.createTime);
+		
+	};
+	
 	$http.get($scope.host + ":7007/sprSecurity/rest/person").then(
 			function(response) {
 				console.log("data");
@@ -80,7 +82,7 @@ app.controller('customersCtrl', function($scope, $http) {
 				console.log($scope.person);
 			});
 
-	$scope.date_format = function date_format(milli_sec) {
+	$scope.date_format = function (milli_sec) {
 		if (milli_sec == null) {
 			return "";
 		}

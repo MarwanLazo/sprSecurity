@@ -144,14 +144,16 @@ button {
 							<th>Person Full Name</th>
 							<th>Temp Staus</th>
 							<th>create time</th>
+						
 						</tr>
 						<tr ng-repeat="x in names">
 							<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName}} </a></td>
-							<td>{{ x.tempEmail }}</td>
+							<td><a href="#" ng-click="loadItem(x)">{{ x.tempEmail }} </a></td>
 							<td>{{ x.tempRef.tempTableName }}</td>
 							<td>{{ x.person.id.fullName }}</td>
 							<td>{{ x.status }}</td>
 							<td>{{date_format(x.createTime)}}</td>
+							
 						</tr>
 					</table>
 
@@ -168,8 +170,7 @@ button {
 						required> <span ng-show="myForm1.myAddress.$error.email">Not
 						a valid e-mail address</span>
 					<h1>Status</h1>
-					{{myForm1.myAddress.$valid}} {{myForm1.myAddress.$dirty}}
-					{{myForm1.myAddress.$touched}}
+					{{myForm1.myAddress.$valid}} {{myForm1.myAddress.$dirty}} {{myForm1.myAddress.$touched}}
 				</form>
 			</div>
 		</div>
