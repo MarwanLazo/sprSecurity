@@ -18,18 +18,12 @@ app.controller('customersCtrl', function($scope, $http) {
 	};
 
 	$scope.submit = function() {
-		console.log($scope.tempTable);
-		if ($scope.tempTable.person != null) {
-			$scope.tempTable.person = JSON.parse($scope.tempTable.person);
-		}
-		if ($scope.tempTable.tempRef != null) {
-			$scope.tempTable.tempRef = JSON.parse($scope.tempTable.tempRef);
-		}
-
+		console.log($scope.tempTable.person);
+		console.log($scope.tempTable.tempRef);
 		if ($scope.tempTable.createTime != null) {
-			$scope.tempTable.createTime = new Date($scope.tempTable.createTime)
-					.getTime();
+			$scope.tempTable.createTime = new Date($scope.tempTable.createTime).getTime();
 		}
+		
 		var rs = JSON.stringify($scope.tempTable);
 
 		$http.post($scope.host + ":7007/sprSecurity/rest/addtemptable/", rs)
@@ -71,15 +65,15 @@ app.controller('customersCtrl', function($scope, $http) {
 
 	$scope.loadItem = function(x) {
 		$scope.tempTable=x;
-		$scope.tempTable.createTime=$scope.date_format($scope.tempTable.createTime);
 		
+		$scope.tempTable.createTime=$scope.date_format($scope.tempTable.createTime);
+		console.log($scope.tempTable.person);
+		console.log($scope.tempTable.tempRef);
 	};
 	
 	$http.get($scope.host + ":7007/sprSecurity/rest/person").then(
 			function(response) {
-				console.log("data");
 				$scope.person = response.data;
-				console.log($scope.person);
 			});
 
 	$scope.date_format = function (milli_sec) {
