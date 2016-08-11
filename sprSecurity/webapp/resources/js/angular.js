@@ -18,12 +18,16 @@ app.controller('customersCtrl', function($scope, $http) {
 	};
 
 	$scope.submit = function() {
-		console.log($scope.tempTable.person);
-		console.log($scope.tempTable.tempRef);
-		if ($scope.tempTable.createTime != null) {
-			$scope.tempTable.createTime = new Date($scope.tempTable.createTime).getTime();
-		}
 		
+		if ($scope.tempTable.createTime != null) {
+			if (!$.isNumeric($scope.tempTable.createTime)) {
+				console.log($scope.tempTable.createTime);
+				console.log(Date.parse($scope.tempTable.createTime));	
+				$scope.tempTable.createTime = new Date($scope.tempTable.createTime).getTime();
+				console.log($scope.tempTable.createTime);
+			}
+			
+		}
 		var rs = JSON.stringify($scope.tempTable);
 
 		$http.post($scope.host + ":7007/sprSecurity/rest/addtemptable/", rs)
@@ -50,8 +54,7 @@ app.controller('customersCtrl', function($scope, $http) {
 		console.log(item);
 		$.ajax({
 			type : 'DELETE',
-			url : $scope.host + ':7007/sprSecurity/rest/deleteTemptable/'
-					+ item,
+			url : $scope.host + ':7007/sprSecurity/rest/deleteTemptable/' + item,
 			success : function(data, textStatus, jqXHR) {
 				load_all_temptebles();
 			},
@@ -62,13 +65,10 @@ app.controller('customersCtrl', function($scope, $http) {
 
 	}
 
-
 	$scope.loadItem = function(x) {
-		$scope.tempTable=x;
 		
-		$scope.tempTable.createTime=$scope.date_format($scope.tempTable.createTime);
-		console.log($scope.tempTable.person);
-		console.log($scope.tempTable.tempRef);
+		$scope.tempTable = x;
+		$scope.tempTable.createTime =   $.datepicker.formatDate('mm/dd/yyyy',$scope.tempTable.createTime);
 	};
 	
 	$http.get($scope.host + ":7007/sprSecurity/rest/person").then(
@@ -76,45 +76,7 @@ app.controller('customersCtrl', function($scope, $http) {
 				$scope.person = response.data;
 			});
 
-	$scope.date_format = function (milli_sec) {
-		if (milli_sec == null) {
-			return "";
-		}
-		var d = new Date(milli_sec);
-		var datestring = d.getDate() + "/" + (d.getMonth() + 1) + "/"
-				+ d.getFullYear();
-		return datestring;
-	};
+	
 });
 
-// ------------------------------
 
-app.controller(
-		'DoubleController',
-		[
-				'$scope',
-				'notify',
-				function($scope, notify) {
-					$scope.double = function(value) {
-						return value * 2;
-					};
-					$scope.date_format = function date_format(milli_sec) {
-						var d = new Date(milli_sec);
-						var datestring = d.getDate() + "/" + (d.getMonth() + 1)
-								+ "/" + d.getFullYear();
-						return datestring;
-					};
-
-					$scope.callNotify = function() {
-						$scope.css_class = notify($scope.name);
-					}
-				} ]).factory('notify', [ '$window', function(win) {
-	return function(msg) {
-		if (msg == null || msg.length < 3) {
-			return "red";
-		}
-		return "";
-	};
-} ]);
-
-// ================
