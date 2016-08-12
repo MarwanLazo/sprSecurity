@@ -54,6 +54,20 @@ button {
 </head>
 <body ng-app="myApp">
 
+	<nav class="navbar navbar-default">
+		<div class="container-fluid">
+			<div class="navbar-header">
+				<a class="navbar-brand" href="#">WebSiteName</a>
+			</div>
+			<ul class="nav navbar-nav">
+				<li><a href="http://localhost:7007/sprSecurity/angular.html">Home</a></li>
+				<li><a href="http://localhost:7007/sprSecurity/angular.html">Page 1</a></li>
+				<li><a href="http://localhost:7007/sprSecurity/angular.html">Page 2</a></li>
+				<li><a href="http://localhost:7007/sprSecurity/angular.html">Page 3</a></li>
+			</ul>
+		</div>
+	</nav>
+
 	<div class="container-fluid">
 		<div class="row-fluid" ng-controller="customersCtrl">
 			<div class="row">
@@ -61,9 +75,9 @@ button {
 			</div>
 			<div class="row">
 				<div class="col-md-3">
-					<w3-test-directive></w3-test-directive>
+					<!-- <w3-test-directive></w3-test-directive>
 					<p>--------------------------------------</p>
-
+ -->
 					<div class="panel panel-default">
 						<div class="panel-body">Maintain Temp Table</div>
 
@@ -127,9 +141,11 @@ button {
 				</div>
 				<div class="col-md-8">
 					<div class="panel panel-default">
-						<div class="panel-body"><button type="button" ng-click="click()">Temp Table List</button></div>
+						<div class="panel-body">
+							<button type="button" ng-click="click()">Temp Table List</button>
+						</div>
 
-						
+
 						<table cellspacing="20" class="table blank_row">
 							<tr>
 								<th>Temp Name</th>
@@ -143,7 +159,8 @@ button {
 							<tr ng-repeat="x in names">
 								<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName}}
 								</a></td>
-								<td><a href="#" ng-click="loadItem(x)">{{ x.tempEmail}} </a></td>
+								<td><a href="#" ng-click="loadItem(x)">{{ x.tempEmail}}
+								</a></td>
 								<td>{{ x.tempRef.tempTableName }}</td>
 								<td>{{ x.person.id.fullName }}</td>
 								<td>{{ x.status }}</td>

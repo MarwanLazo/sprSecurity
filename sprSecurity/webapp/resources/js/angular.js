@@ -17,13 +17,22 @@ app.controller('customersCtrl', function($scope, $http) {
 		load_all_temptebles();
 	};
 
+	$scope.getFormattedDate=function (input) {
+	    var pattern = /(.*?)\/(.*?)\/(.*?)$/;
+	    var result = input.replace(pattern,function(match,p1,p2,p3){
+	        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+	        return (p1<10?"0"+p1:p1) + " " + months[(p2-1)] + " " + p3;
+	    });
+
+	    return new Date(result).getTime();
+	}
+	
 	$scope.submit = function() {
 		
 		if ($scope.tempTable.createTime != null) {
+			
 			if (!$.isNumeric($scope.tempTable.createTime)) {
-				console.log($scope.tempTable.createTime);
-				console.log(Date.parse($scope.tempTable.createTime));	
-				$scope.tempTable.createTime = new Date($scope.tempTable.createTime).getTime();
+				$scope.tempTable.createTime=$scope.getFormattedDate($scope.tempTable.createTime);	
 				console.log($scope.tempTable.createTime);
 			}
 			
@@ -68,7 +77,16 @@ app.controller('customersCtrl', function($scope, $http) {
 	$scope.loadItem = function(x) {
 		
 		$scope.tempTable = x;
-		$scope.tempTable.createTime =   $.datepicker.formatDate('mm/dd/yyyy',$scope.tempTable.createTime);
+		console.log($scope.tempTable.createTime);
+		
+		var singledate =  "/Date("+$scope.tempTable.createTime+")/";//$scope.tempTable.createTime;
+		var changeddate = singledate.match(/\d+/g).map(function (s) { return new Date(+s); });
+		var date = new Date(changeddate);
+		var mnth = ("0" + (date.getMonth() + 1)).slice(-2);
+		var day = ("0" + date.getDate()).slice(-2);
+		$scope.tempTable.createTime = [day, mnth,date.getFullYear()].join("/");
+		
+		
 	};
 	
 	$http.get($scope.host + ":7007/sprSecurity/rest/person").then(
