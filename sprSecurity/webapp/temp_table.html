@@ -1,9 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp">
 <head>
-<meta name="_csrf_parameter" content="_csrf" />
-<meta name="_csrf_header" content="X-CSRF-TOKEN" />
-<meta name="_csrf" content="e62835df-f1a0-49ea-bce7-bf96f998119c" />
+
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script
@@ -42,31 +40,12 @@ input.ng-invalid {
 	/* background: red; */
 }
 
-button {
-	vertical-align: top;
-}
-
-#blank_row {
-	height: 2px !important; /* Overwrite any previous rules */
-	background-color: #FFFFFF;
-}
 </style>
 </head>
-<body ng-app="myApp">
+<body>
 
-	<nav class="navbar navbar-default">
-		<div class="container-fluid">
-			<div class="navbar-header">
-				<a class="navbar-brand" href="#">WebSiteName</a>
-			</div>
-			<ul class="nav navbar-nav">
-				<li><a href="http://localhost:7007/sprSecurity/temp_table.html">Home</a></li>
-				<li><a href="http://localhost:7007/sprSecurity/temp_table.html">Page 1</a></li>
-				<li><a href="http://localhost:7007/sprSecurity/temp_table.html">Page 2</a></li>
-				<li><a href="http://localhost:7007/sprSecurity/temp_table.html">Page 3</a></li>
-			</ul>
-		</div>
-	</nav>
+
+	<div id="includedContent"></div>
 
 	<div class="container-fluid">
 		<div class="row-fluid" ng-controller="customersCtrl">
@@ -146,7 +125,7 @@ button {
 						</div>
 
 
-						<table cellspacing="20" class="table blank_row">
+						<table cellspacing="20" class="table">
 							<tr>
 								<th>Temp Name</th>
 								<th>Temp Email</th>
