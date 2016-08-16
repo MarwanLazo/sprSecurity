@@ -1,7 +1,8 @@
 <!DOCTYPE html>
-<html ng-app="myApp">
+<html>
 <head>
-
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <script
@@ -10,7 +11,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 
-<script type="text/javascript" src="resources/js/temp_table.js"></script>
+
+<script type="text/javascript" src="resources/js/person.js"></script>
 <script type="text/javascript" src="resources/js/mainJS.js"></script>
 <!-- Latest compiled and minified CSS -->
 <link rel="stylesheet"
@@ -42,11 +44,9 @@ input.ng-invalid {
 }
 </style>
 </head>
-<body>
-
+<body ng-app="myApp_service">
 
 	<!-- <div id="includedContent"></div> -->
-
 	<ng-include src="'header.html'"></ng-include>
 
 	<div class="container-fluid">
@@ -60,10 +60,7 @@ input.ng-invalid {
 					<p>--------------------------------------</p>
  -->
 					<div class="panel panel-default">
-						<div class="panel-body">Maintain Temp Table</div>
-
-
-
+						<div class="panel-body">Maintain Person</div>
 						<form name="formTemp" style="padding: 20px;">
 
 							<div class="form-group">
@@ -117,63 +114,25 @@ input.ng-invalid {
 
 						</form>
 					</div>
-
-
-				</div>
-				<div class="col-md-8">
-					<div class="panel panel-default">
-						<div class="panel-body">
-							<button type="button" ng-click="click()">Temp Table List</button>
-						</div>
-
-
-						<table cellspacing="20" class="table">
-							<tr>
-								<th>Temp Name</th>
-								<th>Temp Email</th>
-								<th>Temp REF</th>
-								<th>Person Full Name</th>
-								<th>Temp Staus</th>
-								<th>create time</th>
-
-							</tr>
-							<tr ng-repeat="x in names">
-								<td><a href="#" ng-click="deleteItem(x.tempTableName)">{{x.tempTableName}}
-								</a></td>
-								<td><a href="#" ng-click="loadItem(x)">{{ x.tempEmail}}
-								</a></td>
-								<td>{{ x.tempRef.tempTableName }}</td>
-								<td>{{ x.person.id.fullName }}</td>
-								<td>{{ x.status }}</td>
-								<td>{{x.createTime | date:'dd/MM/yyyy'}}</td>
-
-							</tr>
-						</table>
-
-					</div>
 				</div>
 			</div>
 		</div>
-
-		<!-- <div class="row">
-
-			<form name="myForm">
-				Email: <input type="email" name="myAddress" ng-model="error">
-				<span ng-show="myForm.myAddress.$error.email">Not a valid
-					e-mail address</span>
-			</form>
-
-			<form name="myForm1" ng-init="myText = 'post@myweb.com'">
-				Email: <input type="email" name="myAddress" ng-model="myText"
-					required> <span ng-show="myForm1.myAddress.$error.email">Not
-					a valid e-mail address</span>
-				<h1>Status</h1>
-				{{myForm1.myAddress.$valid}} {{myForm1.myAddress.$dirty}}
-				{{myForm1.myAddress.$touched}}
-			</form>
-		</div> -->
-
-
 	</div>
+	</div>
+
 </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

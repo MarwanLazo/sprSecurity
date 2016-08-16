@@ -3,11 +3,13 @@ package com.sprSecurity.spring.dto;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sprSecurity.spring.hibernate.entity.PersonEB;
+import com.sprSecurity.spring.oval.CustomNotNull;
 
 public class PersonDTO extends AbstractDTO<PersonPKDTO> {
 
 	private static final long	serialVersionUID	= 1L;
 
+	@CustomNotNull
 	private PersonPKDTO			id;
 
 	private Integer				age;
