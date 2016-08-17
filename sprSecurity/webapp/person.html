@@ -1,56 +1,25 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="myApp_service">
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
-<script
-	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
-
-
+<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script type="text/javascript" src="resources/js/person.js"></script>
-<script type="text/javascript" src="resources/js/mainJS.js"></script>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
-	integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
-	crossorigin="anonymous">
 
-<!-- Optional theme -->
-<link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"
-	integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp"
-	crossorigin="anonymous">
-
-<!-- Latest compiled and minified JavaScript -->
-<script
-	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
-	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
-	crossorigin="anonymous"></script>
-
-
-<link rel="stylesheet"
-	href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
-<script
-	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<style>
-input.ng-invalid {
-	border: 1px solid red;
-	/* background: red; */
-}
-</style>
+<ng-include src="'head_tag.html'"></ng-include>
 </head>
-<body ng-app="myApp_service">
+<body>
 
 	<!-- <div id="includedContent"></div> -->
 	<ng-include src="'header.html'"></ng-include>
 
 	<div class="container-fluid">
-		<div class="row-fluid" ng-controller="customersCtrl">
+		<div class="row-fluid" ng-controller="Main_controller">
 			<div class="row">
 				<div class="col-md-12"></div>
 			</div>
@@ -61,62 +30,74 @@ input.ng-invalid {
  -->
 					<div class="panel panel-default">
 						<div class="panel-body">Maintain Person</div>
-						<form name="formTemp" style="padding: 20px;">
+						<form name="formPerson" style="padding: 20px;">
 
 							<div class="form-group">
-								<label for="temp_Name">Temp Name</label> <input type="text"
-									ng-model="tempTable.tempTableName" required
-									class="form-control" id="temp_Name" name="temp_Name"
-									placeholder="Temp Name"> <span
-									ng-show="formTemp.temp_Name.$error.temp_Name">Not a
-									valid e-mail address</span>
+								<label for="person_Name">First Name</label> <input type="text"
+									ng-model="person.id.name" required class="form-control"
+									id="person_Name" name="person_Name" placeholder="first name">
 							</div>
 
 							<div class="form-group">
-								<label for="Temp_Email">temp Email</label> <input name="email"
-									type="email" ng-model="tempTable.tempEmail" required
-									class="form-control" id="Temp_Email" placeholder="Email">
-								<span ng-show="formTemp.email.$error.email">Not a valid
-									e-mail address</span>
+								<label for="person_fullname">Last Name</label> <input
+									type="text" ng-model="person.id.fullName" required
+									class="form-control" id="person_fullname"
+									placeholder="Last Name" name="person_fullname">
 							</div>
 
 							<div class="form-group">
-								<label for="temp_ref">Temp Ref</label> <select
-									class="form-control" id="temp_ref"
-									ng-options="item as item.tempTableName for item in names track by item.tempTableName"
-									ng-model="tempTable.tempRef"></select>
-
+								<label for="age">age</label> <input type="number"
+									ng-model="person.age" required class="form-control" id="age"
+									placeholder="age">
 							</div>
 
 							<div class="form-group">
-								<label for="temp_ref_Status">Temp Status</label> <select
-									class="form-control" id="temp_ref_Status"
-									ng-model="tempTable.status" id="temp_ref_Status">
-									<option ng-repeat="item in names" value="{{item.status}}">{{item.status}}</option>
-								</select>
-							</div>
-
-							<div class="form-group">
-								<label for="selectedPerson">Person</label> <select
-									class="form-control" id="selectedPerson"
-									ng-options="item as (item.id.name+' '+item.id.fullName) for item in person track by item.id.fullName"
-									ng-model="tempTable.person"></select>
+								<label for="job">job</label> <input type="text"
+									ng-model="person.job" required class="form-control" id="job"
+									placeholder="Job">
 							</div>
 
 							<div class="form-group">
 								<label for="datepicker">Create date</label> <input
-									class="form-control" ng-model="tempTable.createTime "
-									type="text" id="datepicker" />
+									class="form-control" ng-model="person.createTime " type="text"
+									id="datepicker" />
 							</div>
 
 
-							<button class="btn btn-default" type="button" ng-click="submit()">submit</button>
+							<button class="btn btn-default" type="button" ng-click="submit()">Save</button>
 
 						</form>
 					</div>
 				</div>
+				<div class="col-md-8">
+					<div class="panel panel-default">
+						<div class="panel-body">
+							<button type="button" class="btn btn-info" ng-click="click()">Person List</button>
+						</div>
+
+
+						<table cellspacing="20" class="table">
+							<tr>
+								<th>First Name</th>
+								<th>Last Name</th>
+								<th>Age</th>
+								<th>Job</th>
+
+							</tr>
+							<tr ng-repeat="person in personList">
+								<td>{{ person.id.name}}</td>
+								<td>{{ person.id.fullName}}</td>
+								<td>{{ person.age }}</td>
+								<td>{{person.job}}</td>
+
+							</tr>
+						</table>
+
+					</div>
+				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	</div>
 
