@@ -16,7 +16,14 @@ app.controller("Main_controller", function($scope, $http) {
 	};
 
 	$scope.submit = function() {
-
+		var rs = JSON.stringify($scope.person);
+		$http.post($scope.host + ":7007/sprSecurity/rest/addPerson/", rs).success(function(rs, status, headers) {
+			$scope.tempTable = {};
+			$scope.load_all_Persons();
+		}).error(function(rs, status, header) {
+			$scope.ResponseDetails = "Data: " + rs + "<br />status: " + status + "<br />headers: " + header;
+			console.log($scope.ResponseDetails);
+		});
 	};
 
 	$scope.deleteItem = function(person) {
@@ -34,7 +41,7 @@ app.controller("Main_controller", function($scope, $http) {
 	};
 
 	$scope.loadItem = function(person) {
-
+		$scope.person = person;
 	};
 
 });

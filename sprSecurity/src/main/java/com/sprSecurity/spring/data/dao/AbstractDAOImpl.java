@@ -63,14 +63,12 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		if (!validate(dto))
 			return false;
 		logger.info("delete Entity Start");
-		Entity eb = getTransFormer().transfromToEntity(dto);
-		eb = findEntityById(eb);
-		if (eb != null) {
-			getRepository().delete(eb);
-			logger.info("delete Entity end successfully");
+		Entity entity = getRepository().findEntityById((Serializable) getPkEB(dto.getPK()));
+		if (entity != null) {
+			getRepository().delete(entity);
 			return true;
 		}
-		return false;
+		return false;	
 	}
 
 	@Override

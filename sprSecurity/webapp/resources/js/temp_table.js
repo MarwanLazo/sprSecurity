@@ -32,7 +32,6 @@ app.controller('customersCtrl', function($scope, $http) {
 		}
 		var rs = JSON.stringify($scope.tempTable);
 		$http.post($scope.host + ":7007/sprSecurity/rest/addtemptable/", rs).success(function(rs, status, headers) {
-			$scope.PostDataResponse = rs;
 			$scope.tempTable = {};
 			$scope.load_all_temptebles();
 		}).error(function(rs, status, header) {
