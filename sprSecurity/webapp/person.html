@@ -72,7 +72,7 @@
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<button type="button" class="btn btn-info" ng-click="click()">Person List</button>
+							<button type="button" class="btn btn-info" ng-click="load_all_Persons()">Person List</button>
 						</div>
 
 
@@ -85,8 +85,9 @@
 
 							</tr>
 							<tr ng-repeat="person in personList">
-								<td>{{ person.id.name}}</td>
-								<td>{{ person.id.fullName}}</td>
+								
+								<td><a href="#" ng-click="deleteItem(person)">{{person.id.name}}</a></td>
+								<td><a href="#" ng-click="loadItem(person)">{{person.id.fullName}}</a></td>
 								<td>{{ person.age }}</td>
 								<td>{{person.job}}</td>
 
