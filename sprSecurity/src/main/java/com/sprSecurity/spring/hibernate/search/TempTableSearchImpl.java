@@ -34,7 +34,7 @@ public class TempTableSearchImpl implements TempTableSearch {
 		org.apache.lucene.search.Query query = qb.keyword().onFields(fields).matching(object).createQuery();
 		javax.persistence.Query persistenceQuery = fullTextEntityManager.createFullTextQuery(query, TempTableEB.class);
 		List<TempTableEB> ebs = persistenceQuery.getResultList();
-		return transformer.transfromListToDTO(ebs);
+		return transformer.transfromToDTO(ebs);
 
 	}
 

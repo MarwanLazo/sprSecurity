@@ -65,6 +65,9 @@ public class HelloServlet extends HttpServlet {
 		PrintWriter out = response.getWriter();
 		try {
 
+			out.println(service.geTempTable("%com%"));
+			out.println("=================================");
+
 			PersonDTO p = new PersonDTO();
 			p.setId(new PersonPKDTO(null, "Ali Sami_3"));
 			p.setJob("Dr.");

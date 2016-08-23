@@ -62,7 +62,7 @@ public abstract class AbstractTransformerImpl<Source extends AbstractDTO<?>, Tar
 	}
 
 	@Override
-	public List<Source> transfromListToDTO(List<Target> targets) {
+	public List<Source> transfromToDTO(List<Target> targets) {
 		List<Source> sources = new ArrayList<Source>();
 		for (Target enity : targets) {
 			sources.add(transfromToDTO(enity));

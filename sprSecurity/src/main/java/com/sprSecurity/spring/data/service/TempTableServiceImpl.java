@@ -1,5 +1,7 @@
 package com.sprSecurity.spring.data.service;
 
+import java.util.List;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -17,6 +19,11 @@ public class TempTableServiceImpl extends AbstractServiceImpl<String, TempTableD
 	public TempTableDAO getDAO () {
 		
 		return dao;
+	}
+
+	@Override
+	public List<TempTableDTO> geTempTable(String tempEmail) {
+		return dao.geTempTable(tempEmail);
 	}
 	
 }

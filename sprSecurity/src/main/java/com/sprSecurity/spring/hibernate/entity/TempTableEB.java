@@ -13,6 +13,8 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.validation.constraints.NotNull;
 
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 import org.hibernate.annotations.Type;
 import org.hibernate.envers.Audited;
 import org.hibernate.search.annotations.Field;
@@ -59,6 +61,7 @@ public class TempTableEB extends AbstractEntity<String> {
 
 	@JoinColumns({ @JoinColumn(name = "l_name", referencedColumnName = "l_name"), @JoinColumn(name = "f_name", referencedColumnName = "f_name") })
 	@ManyToOne
+	@NotFound(action = NotFoundAction.IGNORE)
 	private PersonEB			person;
 
 	public TempTableEB() {

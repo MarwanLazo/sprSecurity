@@ -107,7 +107,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 	@Override
 	public List<DTO> findAll() {
 		logger.info("Find All Entities");
-		return getTransFormer().transfromListToDTO(getRepository().findAll());
+		return getTransFormer().transfromToDTO(getRepository().findAll());
 	}
 
 	@Override
@@ -115,7 +115,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 		return em;
 	}
 
-	private Entity findEntityById(Entity entity) {
+/*	private Entity findEntityById(Entity entity) {
 
 		logger.info("Find  Entity if exist");
 		if (entity.getPK() != null) {
@@ -126,7 +126,7 @@ public abstract class AbstractDAOImpl<PK extends Serializable, DTO extends Abstr
 			logger.info("No Entity With Id: " + entity.getPKAsString());
 			return null;
 		}
-	}
+	}*/
 
 	@Override
 	public Object method(Class<?> entityClassName, Object obj) {
