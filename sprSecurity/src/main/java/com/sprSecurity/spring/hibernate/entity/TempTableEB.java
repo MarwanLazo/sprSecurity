@@ -5,6 +5,7 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinColumns;
@@ -60,7 +61,7 @@ public class TempTableEB extends AbstractEntity<String> {
 	private Date				createTime;
 
 	@JoinColumns({ @JoinColumn(name = "l_name", referencedColumnName = "l_name"), @JoinColumn(name = "f_name", referencedColumnName = "f_name") })
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@NotFound(action = NotFoundAction.IGNORE)
 	private PersonEB			person;
 
