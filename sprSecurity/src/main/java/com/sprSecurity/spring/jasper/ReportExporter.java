@@ -3,7 +3,6 @@ package com.sprSecurity.spring.jasper;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.Arrays;
 
 import net.sf.jasperreports.engine.JRException;
@@ -128,7 +127,7 @@ public class ReportExporter {
 		if (parentFile != null)
 			parentFile.mkdirs();
 		JRCsvExporter cvsExporter = new JRCsvExporter();
-		cvsExporter.setExporterOutput(new SimpleWriterExporterOutput(new OutputStreamWriter(new FileOutputStream(new File(path)))));
+		cvsExporter.setExporterOutput(new SimpleWriterExporterOutput(path));
 		cvsExporter.setExporterInput(new SimpleExporterInput(jasperPrint));
 		SimpleCsvMetadataExporterConfiguration configuration = new SimpleCsvMetadataExporterConfiguration();
 		configuration.setFieldDelimiter(",");
