@@ -6,9 +6,12 @@
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
 
-<script	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
-<script	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
 <script type="text/javascript" src="resources/js/person.js"></script>
 
 <ng-include src="'head_tag.html'"></ng-include>
@@ -72,7 +75,8 @@
 				<div class="col-md-8">
 					<div class="panel panel-default">
 						<div class="panel-body">
-							<button type="button" class="btn btn-info" ng-click="load_all_Persons()">Person List</button>
+							<button type="button" class="btn btn-info"
+								ng-click="load_all_Persons()">Person List</button>
 						</div>
 
 
@@ -85,8 +89,9 @@
 
 							</tr>
 							<tr ng-repeat="person in personList">
-								
-								<td><a href="#" ng-click="deleteItem(person)">{{person.id.name}}</a></td>
+
+								<td><a href="#" ng-click="loadItem(person)"
+									data-toggle="modal" data-target="#confirm-delete">{{person.id.name}}</a></td>
 								<td><a href="#" ng-click="loadItem(person)">{{person.id.fullName}}</a></td>
 								<td>{{ person.age }}</td>
 								<td>{{person.job}}</td>
@@ -95,12 +100,40 @@
 						</table>
 
 					</div>
+
+
+					<!-- <button class="btn btn-default" data-href="/delete.php?id=54"
+						data-toggle="modal" data-target="#confirm-delete">Delete
+						record #54</button> -->
+					<div class="modal fade" id="confirm-delete" tabindex="-1"
+						role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header">
+									<h4>Delete Person</h4>
+								</div>
+								<div class="modal-body">
+									Are you sure want to delete :<span style="color: red;">
+										{{person.id.name + person.id.fullName}}</span>
+
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-default"
+										data-dismiss="modal">Cancel</button>
+									<a class="btn btn-danger btn-ok" data-dismiss="modal"
+										ng-click="deleteItem(person)">Delete</a>
+								</div>
+							</div>
+						</div>
+					</div>
+
+
 				</div>
 			</div>
 		</div>
 	</div>
-	</div>
-	</div>
+
+
 
 </body>
 </html>

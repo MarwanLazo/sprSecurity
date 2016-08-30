@@ -26,11 +26,14 @@ app.controller("Main_controller", function($scope, $http) {
 		});
 	};
 
-	$scope.deleteItem = function(person) {
-		console.log(person);
+	$scope.deleteItem = function() {
+		console.log($scope.person);
+		if($scope.person == null){
+			return;
+		}
 		$.ajax({
 			type : 'DELETE',
-			url : $scope.host + ':7007/sprSecurity/rest/deleteperson/' + person.id.name + "/" + person.id.fullName,
+			url : $scope.host + ':7007/sprSecurity/rest/deleteperson/' + $scope.person.id.name + "/" + $scope.person.id.fullName,
 			success : function(data, textStatus, jqXHR) {
 				$scope.load_all_Persons();
 			},

@@ -20,9 +20,37 @@
 		<joda-time.version>2.3</joda-time.version>
 		<spring.security.version>4.1.0.RELEASE</spring.security.version>
 		<querydsl.version>3.7.4</querydsl.version>
+		<cxf.version>3.1.7</cxf.version>
 	</properties>
 
 	<dependencies>
+
+		<!-- apache cxf 
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxws</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http</artifactId>
+			<version>${cxf.version}</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-transports-http-jetty</artifactId>
+			<version>${cxf.version}</version>
+		</dependency> -->
+
+
 
 		<!-- https://mvnrepository.com/artifact/com.google.guava/guava -->
 		<dependency>
@@ -30,10 +58,6 @@
 			<artifactId>guava</artifactId>
 			<version>19.0</version>
 		</dependency>
-
-
-
-
 
 		<!-- QueryDSL -->
 		<dependency>
@@ -57,7 +81,7 @@
 		<dependency>
 			<groupId>cglib</groupId>
 			<artifactId>cglib</artifactId>
-			 <version>3.2.4</version>
+			<version>3.2.4</version>
 		</dependency>
 
 		<!-- aspectJ -->
