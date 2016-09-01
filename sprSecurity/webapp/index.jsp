@@ -11,18 +11,7 @@
 </head>
 <body>
 
-	You've clicked
-	<span data-bind="text: numberOfClicks"></span> times
-	<button data-bind="click: incrementClickCounter">Click me</button>
+<jsp:forward page="login.html"/> 
 
-	<script type="text/javascript">
-		var viewModel = {
-			numberOfClicks : ko.observable(0),
-			incrementClickCounter : function() {
-				var previousCount = this.numberOfClicks();
-				this.numberOfClicks(previousCount + 1);
-			}
-		};
-	</script>
 </body>
 </html>

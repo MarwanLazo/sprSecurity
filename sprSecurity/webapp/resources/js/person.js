@@ -13,8 +13,22 @@ app.controller("Main_controller", function($scope, $http) {
 			console.log("Done !");
 			$scope.personList = response.data;
 		});
-	};
 
+		/*
+		 * console.log("Done ! 1"); var data =
+		 * 'username=temporary&password=temporary'; $.ajax({ data: data,
+		 * timeout: 1000, type: 'GET', url: $scope.host +
+		 * ":7007/sprSecurity/rest/person"
+		 * 
+		 * }).done(function(data, textStatus, jqXHR) { console.log("Done ! 2");
+		 * $scope.personList = data;
+		 * 
+		 * }).fail(function(jqXHR, textStatus, errorThrown) { alert('Booh! Wrong
+		 * credentials, try again!'); }); console.log("Done !3 end");
+		 */
+
+	};
+	// -----------------save or update---------------------------------
 	$scope.submit = function() {
 		var rs = JSON.stringify($scope.person);
 		$http.post($scope.host + ":7007/sprSecurity/rest/addPerson/", rs).success(function(rs, status, headers) {
@@ -25,10 +39,10 @@ app.controller("Main_controller", function($scope, $http) {
 			console.log($scope.ResponseDetails);
 		});
 	};
-
+	// -------------------delete-----------------------------------
 	$scope.deleteItem = function() {
 		console.log($scope.person);
-		if($scope.person == null){
+		if ($scope.person == null) {
 			return;
 		}
 		$.ajax({

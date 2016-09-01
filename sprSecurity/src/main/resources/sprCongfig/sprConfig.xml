@@ -53,6 +53,7 @@
 	<context:component-scan base-package="com.sprSecurity.spring.jasper.template" />
 	<context:component-scan base-package="com.sprSecurity.spring.jms" />
 	<context:component-scan base-package="com.sprSecurity.spring.restws" />
+	<context:component-scan base-package="com.sprSecurity.configuration" />
 
 	<bean class="com.sprSecurity.spring.logging.LoggingAspect" id="logg" />
 
@@ -67,6 +68,8 @@
 	<import resource="spring_WS.xml" />
 
 	<!-- <import resource="spring_apache_cxf.xml" /> -->
+	
+	 <import resource="spring_security.xml" /> 
 
 	<import resource="classpath:batch/spring_batch.xml" />
 
